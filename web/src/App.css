@@ -18,13 +18,14 @@ body{
   height: 80px;
   background-color: #666262;
   border: 2px solid #FFD700;
+  border-radius: 10px;
   clip-path: polygon(
     0 0,         /* top-left corner */
     49% 0,       /* just before center */
     50% -20px,   /* pulled-up center "cut" */
     51% 0,       /* just after center */
-    100% 0,      /* top-right corner */
-    80% 100%,   /* bottom-right */
+    98% 0,      /* top-right corner */
+    85% 100%,   /* bottom-right */
     0 100%       /* bottom-left */
   );
 }
@@ -34,14 +35,15 @@ body{
   height: 80px;
   background-color: #666262;
   border: 2px solid #FFD700;
+  border-radius: 10px;
   clip-path: polygon(
-    0 0,         /* top-left corner */
+    2% 0,         /* top-left corner */
     49% 0,       /* just before center */
     50% -20px,   /* pulled-up center "cut" */
     51% 0,       /* just after center */
     100% 0,      /* top-right corner */
     100% 100%,   /* bottom-right */
-    20% 100%       /* bottom-left */
+    15% 100%       /* bottom-left */
   );
 }
 
@@ -62,12 +64,22 @@ nav {
 }
 
 .nav-link{
+  display: inline-block; 
   text-decoration: none;
   margin-top: 1.5rem;
   padding: 1rem;
   color: white;
   font-size: 20px;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.nav-link:hover{
+  text-shadow: 
+  0 0 5px #FFD700,
+  0 0 10px #FFD700,
+  0 0 20px #FFD700,
+  0 0 30px #FFD700;
 }
 
 .hero {
@@ -93,10 +105,11 @@ nav {
 }
 
 .subtitle {
+  font-family:'Roboto', sans-serif;
   font-size: 1.2rem;
   color: #aaa;
   margin: 1rem 0 2rem;
-  max-width: 600px;
+  max-width: 100%;
 }
 
 .cta-button {
@@ -112,5 +125,5 @@ nav {
 }
 
 .cta-button:hover {
-  background-color: #e6c200;
+  background-color: #887400;
 }
