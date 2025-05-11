@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Clock, TrendingUp, Users } from 'lucide-react';
+import { Shield, Clock, TrendingUp, AlarmClockOff } from 'lucide-react';
 
 const Features = () => {
   const features = [
@@ -15,15 +14,15 @@ const Features = () => {
       description: 'Set custom time periods for your savings to remain locked and untouchable.'
     },
     {
+      icon: AlarmClockOff,
+      title: 'Withdrawal Penalty',
+      description: 'Withdraw early? A small 5% fee keeps your commitment strong and spending habits in check.'
+    },
+    {
       icon: TrendingUp,
       title: 'Growth Tracking',
       description: 'Monitor your savings growth and receive insights on your financial progress.'
     },
-    {
-      icon: Users,
-      title: 'Shared Goals',
-      description: 'Create shared saving goals with friends or family members.'
-    }
   ];
 
   return (

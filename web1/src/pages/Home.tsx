@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Lock, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -45,6 +44,7 @@ const Home = () => {
             transition={{ delay: 0.7, duration: 0.8 }}
             className="space-x-4"
           >
+            {/* Later it will redirect to app download or MAYBE lock feature in website itself. */}
             <Link
               to="/features"
               className="inline-flex items-center px-6 py-3 bg-primary-600 text-gray-900 font-medium rounded-lg hover:bg-primary-700 transition-colors"

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { LockKeyhole, Timer, Wallet, CheckCircle } from 'lucide-react';
 
@@ -6,23 +5,23 @@ const HowItWorks = () => {
   const steps = [
     {
       icon: Wallet,
-      title: 'Set Your Goal',
-      description: 'Choose how much you want to save and for what purpose.'
-    },
-    {
-      icon: LockKeyhole,
-      title: 'Lock Your Money',
-      description: 'Secure your savings with our advanced locking mechanism.'
+      title: 'Enter the amount',
+      description: 'Choose how much you want to lock.'
     },
     {
       icon: Timer,
       title: 'Set Duration',
-      description: 'Choose how long you want your money to remain locked.'
+      description: 'Choose how long you want to lock your money.'
+    },
+    {
+      icon: LockKeyhole,
+      title: 'Lock Your Money',
+      description: 'Initiate the lock by depositing the money.'
     },
     {
       icon: CheckCircle,
-      title: 'Achieve Goals',
-      description: 'Watch your savings grow as you reach your financial goals.'
+      title: 'Get money back',
+      description: 'Your money reaches your account once the lock period ends.'
     }
   ];
 
@@ -41,19 +40,19 @@ const HowItWorks = () => {
                 How It Works
               </span>
             </h2>
-            <p className="text-xl text-gray-400">Simple steps to secure your savings</p>
+            <p className="text-xl text-gray-400">Simple steps to control your spending</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: index * 0.2, duration: 0.8 }}
-                className="relative"
+                className="relative flex flex-col h-full"
               >
-                <div className="p-6 bg-gray-800 rounded-lg border border-gray-700">
+                <div className="p-6 bg-gray-800 rounded-lg border border-gray-700 flex flex-col h-full">
                   <div className="flex items-center justify-center w-16 h-16 bg-primary-500/10 rounded-full mb-4">
                     <step.icon className="h-8 w-8 text-primary-500" />
                   </div>
