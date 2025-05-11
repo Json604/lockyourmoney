@@ -1,4 +1,4 @@
-import { SiGithub , SiX , SiLinkedin } from 'react-icons/si';
+import { SiGithub , SiLinkedin } from 'react-icons/si';
 
 const Footer = () => {
   return (
@@ -19,7 +19,6 @@ const Footer = () => {
             <div className="flex space-x-4">
               <a href="http://github.com/Json604"  target= "_blank" className="hover:text-primary-500 transition-colors"><SiGithub className='h-5 w-5'/></a>
               <a href="https://www.linkedin.com/in/kartikey10121/" target="_blank" className="hover:text-primary-500 transition-colors"><SiLinkedin className='h-5 w-5'/></a>
-              <a href="https://x.com/infin8erer" target="_blank" className="hover:text-primary-500 transition-colors"><SiX className='h-5 w-5'/></a>
             </div>
           </div>
         </div>
