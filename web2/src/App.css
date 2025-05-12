@@ -113,8 +113,11 @@ nav {
 }
 
 .cta-button {
+  display: inline-block;            
+  text-decoration: none;        
   background-color: #FFD700;
   color: black;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 1rem;
   font-weight: bold;
   padding: 1rem 1.5rem;
