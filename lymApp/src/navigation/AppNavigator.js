@@ -1,0 +1,75 @@
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Icon from 'react-native-vector-icons/Ionicons'
+import Profile from "../screens/Profile/Profile";
+import Start from "../screens/Start/Start";
+import Working from "../screens/Working/Working";
+
+const Tab = createBottomTabNavigator();
+
+export default function AppNavigator(){
+    return(
+        <NavigationContainer>
+            <Tab.Navigator
+            initialRouteName="Working"
+            screenOptions={{
+                tabBarActiveTintColor: 'rgb(255, 255, 255)',
+                tabBarInactiveTintColor: 'rgba(187, 176, 176, 0.75)',
+                tabBarStyle: {
+                    borderTopWidth: 0,
+                    elevation: 0,
+                    height: 70,
+                    paddingBottom: 10,
+                    backgroundColor: 'black'
+                },
+                tabBarIconStyle:{
+                    marginBottom: 3
+                },
+                tabBarLabelStyle: {
+                fontSize: 11,
+                fontWeight: '600', 
+                },
+                headerShown:false,
+            }}
+            >
+                <Tab.Screen 
+                name="Home"
+                component={Start}
+                options={{
+                    tabBarIcon:({color,focused}) => (
+                        <MaterialCommunityIcons 
+                        name={focused ? "home-variant" : "home-variant-outline"} 
+                        color={color}
+                         size={27}/>
+                    )
+                }}
+                />
+                <Tab.Screen
+                name="Working"
+                component={Working}
+                options={{
+                    tabBarIcon:({color,focused}) => (
+                        <Icon 
+                        name={focused ? "reader" : "reader-outline"} 
+                        color={color} 
+                        size={27}/>
+                    )
+                }}
+                />
+                <Tab.Screen
+                name="Profile"
+                component={Profile}
+                options={{
+                    tabBarIcon:({color,focused}) => (
+                        <MaterialCommunityIcons 
+                        name={focused ? "account" : "account-outline"} 
+                        color={color} 
+                        size={27}/>
+                    )
+                }}
+                />
+            </Tab.Navigator>
+        </NavigationContainer>
+    )
+}
