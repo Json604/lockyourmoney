@@ -1,11 +1,16 @@
+import { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { ThemeContext } from "../../context/useTheme";
+
 
 export default function Working() {
+    const {primary,text,background} = useContext(ThemeContext)
+
     return (
-        <View style={styles.page}>
+        <View style={[styles.page , {backgroundColor: background}]}>
             <View style={styles.hero}>
-                <Text style={styles.h1}>Secure your savings.</Text>
-                <Text style={styles.h2}>Control your spending.</Text>
+                <Text style={[styles.h1 , {color: primary}]}>Secure your savings.</Text>
+                <Text style={[styles.h2 , {color: text}]}>Control your spending.</Text>
             </View>
         </View>
     );
@@ -14,18 +19,16 @@ export default function Working() {
 const styles = StyleSheet.create({
     page: {
         flex: 1,
-        backgroundColor: 'black',
     },
 
     hero: {
         position: 'absolute',
-        top: '15%', // Positions the hero section at 25% of screen height
+        top: '15%', 
         alignItems: 'center',
         width: '100%',
     },
 
     h1: {
-        color: 'gold',
         fontSize: 32,
         fontWeight: 'bold',
         marginBottom: 10,
@@ -33,7 +36,6 @@ const styles = StyleSheet.create({
     },
 
     h2: {
-        color: 'white',
         fontSize: 24,
     }
 });

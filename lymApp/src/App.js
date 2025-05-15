@@ -1,5 +1,10 @@
+import { ThemeProvider } from "./context/useTheme"
 import AppNavigator from "./navigation/AppNavigator"
 
 export default function App(){
-    return <AppNavigator/>
+    return(
+        <ThemeProvider>
+            <AppNavigator/>
+        </ThemeProvider>
+    ) 
 }
