@@ -1,3 +1,4 @@
+import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -6,7 +7,12 @@ import Profile from "../screens/Profile/Profile";
 import Start from "../screens/Start/Start";
 import Working from "../screens/Working/Working";
 
-const Tab = createBottomTabNavigator();
+export type TabParamList = {
+    Home: undefined,
+    Working:undefined,
+    Profile:undefined,
+}
+const Tab = createBottomTabNavigator<TabParamList>();
 
 export default function AppNavigator(){
     return(
@@ -37,7 +43,7 @@ export default function AppNavigator(){
                 name="Home"
                 component={Start}
                 options={{
-                    tabBarIcon:({color,focused}) => (
+                    tabBarIcon:({color,focused} : {color:string, focused: boolean}) => (
                         <MaterialCommunityIcons 
                         name={focused ? "home-variant" : "home-variant-outline"} 
                         color={color}
@@ -49,7 +55,7 @@ export default function AppNavigator(){
                 name="Working"
                 component={Working}
                 options={{
-                    tabBarIcon:({color,focused}) => (
+                    tabBarIcon:({color,focused}: {color:string, focused: boolean}) => (
                         <Icon 
                         name={focused ? "reader" : "reader-outline"} 
                         color={color} 
@@ -61,7 +67,7 @@ export default function AppNavigator(){
                 name="Profile"
                 component={Profile}
                 options={{
-                    tabBarIcon:({color,focused}) => (
+                    tabBarIcon:({color,focused}: {color:string, focused: boolean}) => (
                         <MaterialCommunityIcons 
                         name={focused ? "account" : "account-outline"} 
                         color={color} 

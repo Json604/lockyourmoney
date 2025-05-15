@@ -1,12 +1,17 @@
-import { useContext } from "react";
-import {StyleSheet, View } from "react-native";
+import { useContext, ReactNode } from "react";
+import {StyleSheet, View ,ViewProps, ViewStyle, StyleProp} from "react-native";
 import { ThemeContext } from "../../context/useTheme";
 
-export default function StatCard({style,children,props}){
+type StatCardProps = {
+  children: ReactNode,
+  style?: StyleProp<ViewStyle>;
+}& ViewProps;
+
+export default function StatCard({style,children,...rest} : StatCardProps){
     const{card} = useContext(ThemeContext);
 
     return(
-        <View style={[styles.card , {backgroundColor: card}, style ]} {...props}>
+        <View style={[styles.card , {backgroundColor: card}, style ]} {...rest}>
             {children}
         </View>
     )

@@ -1,15 +1,18 @@
-import { useContext } from "react";
-import {StyleSheet, TouchableOpacity, View } from "react-native";
+import { useContext , ReactNode } from "react";
+import {StyleSheet, TouchableOpacity,StyleProp,TouchableOpacityProps,ViewStyle } from "react-native";
 import { ThemeContext } from "../../context/useTheme";
 
-export default function DynCard({style,children,props}){
+type DynCardProps = {
+  children: ReactNode,
+  style?: StyleProp<ViewStyle>;
+}& TouchableOpacityProps;
+
+export default function DynCard({style,children,...rest} : DynCardProps){
     const{card} = useContext(ThemeContext);
 
     return(
-        <TouchableOpacity>
-            <View style={[styles.card , {backgroundColor: card}, style ]} {...props}>
+        <TouchableOpacity style={[styles.card , {backgroundColor: card}, style ]} {...rest}>
                 {children}
-            </View>
         </TouchableOpacity>
     )
 }
