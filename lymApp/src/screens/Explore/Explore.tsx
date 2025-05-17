@@ -18,7 +18,7 @@ const cardData = [
         subtitle: "Protect what you save",
         description: "Bank-level security ensures your savings stay safe and untouched. Unauthorized access is blocked while you stay in control.",
         color: "rgb(180, 144, 0)",
-        image: require("../../assets/car1.png")
+        image: require("../../assets/car1.jpeg")
     },
     {
         id: "2",
@@ -26,7 +26,7 @@ const cardData = [
         subtitle: "Save without temptation",
         description: "Set a custom duration for locking your money. Need it early? Withdraw with a 5% penalty to build better habits.",
         color: "rgb(80, 80, 80)",
-        image: require("../../assets/car2.png")
+        image: require("../../assets/car2.jpeg")
     },
     {
         id: "3",
@@ -34,7 +34,7 @@ const cardData = [
         subtitle: "Visualize your progress",
         description: "Track your savings growth over time and get insights into how your financial habits are improving.",
         color: "rgb(255, 235, 128)",
-        image: require("../../assets/car3.png")
+        image: require("../../assets/car3.jpeg")
     },
     {
         id: "4",
@@ -42,7 +42,7 @@ const cardData = [
         subtitle: "Locking in 4 simple steps",
         description: "1. Enter amount\n2. Set duration\n3. Lock money\n4. Get it back after time ends.\nSimple, secure, and stress-free.",
         color: "rgb(40, 40, 40)",
-        image: require("../../assets/car4.png")
+        image: require("../../assets/car4.jpeg")
     }
 ];
 
@@ -57,8 +57,7 @@ export default function Explore({ navigation }: props) {
                 <Text style={[styles.h1, { color: primary }]}>Secure your savings.</Text>
                 <Text style={[styles.h2, { color: text }]}>Control your spending.</Text>
                 <Text style={[styles.h3, { color: subtext }]}>
-                    Take control of your financial future with our innovative savings lock
-                    system.
+                    Take control of your financial future with our innovative savings lock system.
                 </Text>
 
                 <DynCard
@@ -75,8 +74,8 @@ export default function Explore({ navigation }: props) {
                         mode="parallax"
                         ref={carouselRef}
                         data={cardData}
-                        width={width * 0.7}
-                        height={480}
+                        width={width * 0.8}
+                        height={600}
                         style={{ marginTop: 30 }}
                         scrollAnimationDuration={500}
                         onSnapToItem={setCurrentIndex}
@@ -117,9 +116,9 @@ const styles = StyleSheet.create({
     h2: { fontSize: 24, marginBottom: 10 },
     h3: { fontSize: 14, textAlign: "center", marginHorizontal: 40 },
     navbtn: { marginTop: 40 },
-    carouselWrapper: { marginTop: 30, alignItems: "center" },
-    card: { width: "100%", height: 500, borderRadius: 16, justifyContent: "center", alignItems: "center", shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 5, elevation: 4 },
-    img: { width: "100%", height: 500,borderRadius: 16,},
+    carouselWrapper: { marginTop: -40, alignItems: "center" },
+    card: { width: "100%", height: 600, borderRadius: 16, justifyContent: "center", alignItems: "center", shadowColor: "#000", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.2, shadowRadius: 5, elevation: 4 },
+    img: { width: "100%", height: 600,borderRadius: 16,},
     // cardTitle: { color: "#fff", fontWeight: "bold", fontSize: 24, marginBottom: 10 },
     // cardSubtitle: { color: "#f0f0f0", fontSize: 18, marginBottom: 10 },
     // cardDescription: { color: "#e0e0e0", fontSize: 14, textAlign: "center", paddingHorizontal: 20 },

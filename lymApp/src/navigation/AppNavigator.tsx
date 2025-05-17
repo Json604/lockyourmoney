@@ -1,10 +1,9 @@
-import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from 'react-native-vector-icons/Ionicons'
 import Profile from "../screens/Profile/Profile";
-import Start from "../screens/Start/Start";
+import Home from "../screens/Home/Home";
 import Explore from "../screens/Explore/Explore";
 
 export type TabParamList = {
@@ -41,7 +40,7 @@ export default function AppNavigator(){
             >
                 <Tab.Screen 
                 name="Home"
-                component={Start}
+                component={Home}
                 options={{
                     tabBarIcon:({color,focused} : {color:string, focused: boolean}) => (
                         <MaterialCommunityIcons 
