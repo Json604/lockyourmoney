@@ -5,11 +5,11 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Icon from 'react-native-vector-icons/Ionicons'
 import Profile from "../screens/Profile/Profile";
 import Start from "../screens/Start/Start";
-import Working from "../screens/Working/Working";
+import Explore from "../screens/Explore/Explore";
 
 export type TabParamList = {
     Home: undefined,
-    Working:undefined,
+    Explore:undefined,
     Profile:undefined,
 }
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -18,7 +18,7 @@ export default function AppNavigator(){
     return(
         <NavigationContainer>
             <Tab.Navigator
-            initialRouteName="Working"
+            initialRouteName="Explore"
             screenOptions={{
                 tabBarActiveTintColor: 'rgb(255, 255, 255)',
                 tabBarInactiveTintColor: 'rgba(187, 176, 176, 0.75)',
@@ -52,12 +52,12 @@ export default function AppNavigator(){
                 }}
                 />
                 <Tab.Screen
-                name="Working"
-                component={Working}
+                name="Explore"
+                component={Explore}
                 options={{
                     tabBarIcon:({color,focused}: {color:string, focused: boolean}) => (
-                        <Icon 
-                        name={focused ? "reader" : "reader-outline"} 
+                        <Icon
+                        name={focused ? "compass" : "compass-outline"} 
                         color={color} 
                         size={27}/>
                     )
