@@ -2,14 +2,12 @@ import { useContext, useRef, useState } from "react";
 import { View, Text, StyleSheet, Dimensions, Image, ScrollView } from "react-native";
 import { ThemeContext } from "../../context/useTheme";
 import DynCard from "../../components/ui/dynCard";
-import { TabParamList } from "../../navigation/AppNavigator";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
 import Animated, { useAnimatedStyle, interpolate, Extrapolate, useSharedValue } from "react-native-reanimated";
+import { props } from "../../types/navTypes";
 
 const { width } = Dimensions.get("window");
 
-type props = BottomTabScreenProps<TabParamList, "Explore" >;
 
 const cardData = [
     {
@@ -83,7 +81,7 @@ return (
             <View style={styles.carouselWrapper}>
                 <Carousel
                     autoPlay
-                    autoPlayInterval={4000}
+                    autoPlayInterval={3000}
                     mode="parallax"
                     ref={carouselRef}
                     data={cardData}

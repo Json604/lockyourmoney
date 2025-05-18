@@ -3,14 +3,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from 'react-native-vector-icons/Ionicons'
 import Profile from "../screens/Profile/Profile";
-import HomeNavigator, { HomeStackParamList } from "./HomeNavigator";
+import HomeNavigator from "./HomeNavigator";
 import Explore from "../screens/Explore/Explore";
+import { TabParamList } from "../types/navTypes";
 
-export type TabParamList = {
-    Home: NavigatorScreenParams<HomeStackParamList>,
-    Explore:undefined,
-    Profile:undefined,
-}
 const Tab = createBottomTabNavigator<TabParamList>();
 
 export default function AppNavigator(){

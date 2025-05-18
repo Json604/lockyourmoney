@@ -1,14 +1,7 @@
-import { createContext, ReactNode} from "react";
+import { createContext} from "react";
+import { ThemeType } from "../types/themeTypes";
+import { ThemeProviderType } from "../types/themeTypes";
 
-type ThemeType = {
-  primary: string;
-  background: string;
-  text: string;
-  subtext: string;
-  card: string;
-  outline: string;
-  placeholderText: string;
-};
 
 const theme = {
     primary: "rgb(255, 215, 0)",
@@ -22,12 +15,8 @@ const theme = {
 
 export const ThemeContext = createContext<ThemeType>(theme);
 
-type ThemeProvider = {
-  children: ReactNode;
-};
 
-
-export const ThemeProvider = ({children} : ThemeProvider) => {
+export const ThemeProvider = ({children} : ThemeProviderType) => {
     return (
         <ThemeContext.Provider value={theme}>
             {children}
