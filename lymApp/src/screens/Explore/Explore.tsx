@@ -20,27 +20,27 @@ const cardData = [
     },
     {
         id: "2",
-            title: "Time-Based Locks",
-                subtitle: "Save without temptation",
-                    description: "Set a custom duration for locking your money. Need it early? Withdraw with a 5% penalty to build better habits.",
-                        color: "rgb(80, 80, 80)",
-                            image: require("../../assets/car2.jpeg")
+        title: "Time-Based Locks",
+        subtitle: "Save without temptation",
+        description: "Set a custom duration for locking your money. Need it early? Withdraw with a 5% penalty to build better habits.",
+        color: "rgb(80, 80, 80)",
+        image: require("../../assets/car2.jpeg")
     },
     {
         id: "3",
-            title: "Growth Tracking",
-                subtitle: "Visualize your progress",
-                    description: "Track your savings growth over time and get insights into how your financial habits are improving.",
-                        color: "rgb(255, 235, 128)",
-                            image: require("../../assets/car3.jpeg")
+        title: "Growth Tracking",
+        subtitle: "Visualize your progress",
+        description: "Track your savings growth over time and get insights into how your financial habits are improving.",
+        color: "rgb(255, 235, 128)",
+        image: require("../../assets/car3.jpeg")
     },
     {
         id: "4",
-            title: "Secure Savings",
-                subtitle: "Protect what you save",
-                    description: "Bank-level security ensures your savings stay safe and untouched. Unauthorized access is blocked while you stay in control.",
-                        color: "rgb(180, 144, 0)",
-                            image: require("../../assets/car1.jpeg")
+        title: "Secure Savings",
+        subtitle: "Protect what you save",
+        description: "Bank-level security ensures your savings stay safe and untouched. Unauthorized access is blocked while you stay in control.",
+        color: "rgb(180, 144, 0)",
+        image: require("../../assets/car1.jpeg")
     }
 ];
 
@@ -49,72 +49,72 @@ export default function Explore({ navigation }: props) {
     const carouselRef = useRef<ICarouselInstance>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
 
-return (
-    <ScrollView style={[styles.page, { backgroundColor: background }]}>
-        <View style={styles.hero}>
-            <Text style={[styles.h1, { color: primary }]}>Secure your savings.</Text>
-            <Text style={[styles.h2, { color: text }]}>Control your spending.</Text>
-            <Text style={[styles.h3, { color: subtext }]}>
-                Take control of your financial future with our innovative savings lock system.
-            </Text>
+    return (
+        <ScrollView style={[styles.page, { backgroundColor: background }]}>
+            <View style={styles.hero}>
+                <Text style={[styles.h1, { color: primary }]}>Secure your savings.</Text>
+                <Text style={[styles.h2, { color: text }]}>Control your spending.</Text>
+                <Text style={[styles.h3, { color: subtext }]}>
+                    Take control of your financial future with our innovative savings lock system.
+                </Text>
 
-            <DynCard
-                style={[styles.navbtn, { backgroundColor: primary }]}
-                onPress={() => {
-                    navigation.navigate("Home" , {
-                        screen:"HomeMain",
-                        params:{
-                            fromSettings: true,
-                        }
-                    })
-                    setTimeout(() => {
-                        navigation.navigate("Home",{
-                            screen: "Lock",
+                <DynCard
+                    style={[styles.navbtn, { backgroundColor: primary }]}
+                    onPress={() => {
+                        navigation.navigate("Home", {
+                            screen: "HomeMain",
+                            params: {
+                                fromSettings: true,
+                            }
                         })
-                    })
-                }
-            }
-            >
-                <Text style={{ fontWeight: "bold" }}>Start Locking</Text>
-            </DynCard>
+                        setTimeout(() => {
+                            navigation.navigate("Home", {
+                                screen: "Lock",
+                            })
+                        })
+                    }
+                    }
+                >
+                    <Text style={{ fontWeight: "bold" }}>Start Locking</Text>
+                </DynCard>
 
-            <View style={styles.carouselWrapper}>
-                <Carousel
-                    autoPlay
-                    autoPlayInterval={3000}
-                    mode="parallax"
-                    ref={carouselRef}
-                    data={cardData}
-                    width={width * 0.8}
-                    height={600}
-                    style={{ marginTop: 30 }}
-                    scrollAnimationDuration={500}
-                    onSnapToItem={setCurrentIndex}
-                    renderItem={({ item, index, animationValue }) => {
-                        const animatedStyle = useAnimatedStyle(() => {
-                            const scale = interpolate(
-                                animationValue.value,
-                                [-1, 0, 1],
-                                [0.85, 1, 0.85],
-                                Extrapolate.CLAMP
+                <View style={styles.carouselWrapper}>
+                    <Carousel
+                        autoPlay
+                        autoPlayInterval={3000}
+                        mode="parallax"
+                        ref={carouselRef}
+                        data={cardData}
+                        width={width * 0.8}
+                        height={600}
+                        style={{ marginTop: 30 }}
+                        scrollAnimationDuration={500}
+                        onSnapToItem={setCurrentIndex}
+                        renderItem={({ item, index, animationValue }) => {
+                            const animatedStyle = useAnimatedStyle(() => {
+                                const scale = interpolate(
+                                    animationValue.value,
+                                    [-1, 0, 1],
+                                    [0.85, 1, 0.85],
+                                    Extrapolate.CLAMP
+                                );
+                                return {
+                                    transform: [{ scale }],
+                                };
+                            });
+
+                            return (
+                                <Animated.View style={[styles.card, { backgroundColor: item.color }, animatedStyle]}>
+                                    <Image source={item.image} style={styles.img} />
+                                </Animated.View>
                             );
-                            return {
-                                transform: [{ scale }],
-                            };
-                        });
+                        }}
+                    />
 
-                        return (
-                            <Animated.View style={[styles.card, { backgroundColor: item.color }, animatedStyle]}>
-                                <Image source={item.image} style={styles.img}/>
-                            </Animated.View>
-                        );
-                    }}
-                />
-
+                </View>
             </View>
-        </View>
-    </ScrollView>
-);
+        </ScrollView>
+    );
 
 }
 
