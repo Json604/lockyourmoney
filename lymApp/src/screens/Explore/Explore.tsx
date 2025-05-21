@@ -16,7 +16,7 @@ const cardData = [
         subtitle: "Locking in 4 simple steps",
         description: "1. Enter amount\n2. Set duration\n3. Lock money\n4. Get it back after time ends.\nSimple, secure, and stress-free.",
         color: "rgb(40, 40, 40)",
-        image: require("../../assets/car4.jpeg")
+        image: require("../../assets/carousel_pics/car1.png")
     },
     {
         id: "2",
@@ -24,7 +24,7 @@ const cardData = [
         subtitle: "Save without temptation",
         description: "Set a custom duration for locking your money. Need it early? Withdraw with a 5% penalty to build better habits.",
         color: "rgb(80, 80, 80)",
-        image: require("../../assets/car2.jpeg")
+        image: require("../../assets/carousel_pics/car2.png")
     },
     {
         id: "3",
@@ -32,7 +32,7 @@ const cardData = [
         subtitle: "Visualize your progress",
         description: "Track your savings growth over time and get insights into how your financial habits are improving.",
         color: "rgb(255, 235, 128)",
-        image: require("../../assets/car3.jpeg")
+        image: require("../../assets/carousel_pics/car3.jpeg")
     },
     {
         id: "4",
@@ -40,7 +40,7 @@ const cardData = [
         subtitle: "Protect what you save",
         description: "Bank-level security ensures your savings stay safe and untouched. Unauthorized access is blocked while you stay in control.",
         color: "rgb(180, 144, 0)",
-        image: require("../../assets/car1.jpeg")
+        image: require("../../assets/carousel_pics/car4.jpeg")
     }
 ];
 
