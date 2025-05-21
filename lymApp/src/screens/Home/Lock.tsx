@@ -4,6 +4,8 @@ import { ThemeContext } from "../../context/useTheme";
 import StatCard from "../../components/ui/StatCard";
 import {Calendar} from "react-native-calendars";
 import DynCard from "../../components/ui/dynCard";
+import { useNavigation } from "@react-navigation/native";
+import { LockScreenNavProp } from "../../types/navTypes";
 
 
 export default function Lock(){
@@ -11,6 +13,7 @@ export default function Lock(){
 const {background,primary,subtext} = useContext(ThemeContext);
 const date = new Date();
 const maxdate = date.getDate() + 30;
+const nav = useNavigation<LockScreenNavProp>();
 
 return(
     <ScrollView style={[styles.page,{backgroundColor:background}]}>
@@ -43,7 +46,12 @@ return(
         }}
         />
 
-        <DynCard style={{marginTop:190, marginHorizontal:160, backgroundColor:primary }}>
+        <DynCard 
+        style={{marginTop:190, marginHorizontal:160, backgroundColor:primary }}
+        onPress={() =>{
+            nav.popToTop();
+        }}
+        >
             <Text style={{textAlign:'center', fontSize:18, fontWeight:'bold', }}>Lock</Text>
         </DynCard>
     </ScrollView>

@@ -55,7 +55,7 @@ export default function Explore({ navigation }: props) {
                 <Text style={[styles.h1, { color: primary }]}>Secure your savings.</Text>
                 <Text style={[styles.h2, { color: text }]}>Control your spending.</Text>
                 <Text style={[styles.h3, { color: subtext }]}>
-                    Take control of your financial future with our innovative savings lock system.
+                    {/* Take control of your financial future with our innovative savings lock system. */}
                 </Text>
 
                 <DynCard
