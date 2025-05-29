@@ -30,8 +30,5 @@ const styles = StyleSheet.create({
     shadowRadius: 6, // shadow blur radius
     elevation: 1, // for Android shadow
     margin: 10, // some margin for spacing between other elements
-    flexDirection:'row',
-    justifyContent: "space-between", // optional: separates text & icon
-    alignItems: "center",
   },
 })

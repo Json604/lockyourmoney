@@ -10,13 +10,13 @@ import { LockScreenNavProp } from "../../types/navTypes";
 
 export default function Lock(){
 
-const {background,primary,subtext} = useContext(ThemeContext);
+const {background,primary,subtext,text} = useContext(ThemeContext);
 const date = new Date();
 const maxdate = date.getDate() + 30;
 const nav = useNavigation<LockScreenNavProp>();
 
 return(
-    <ScrollView style={[styles.page,{backgroundColor:background}]}>
+    <ScrollView contentContainerStyle={[styles.page,{backgroundColor:background}]}>
         <StatCard style={styles.inp}>
         <TextInput
         placeholder="Enter the amount (₹)"
@@ -26,6 +26,7 @@ return(
         />
         </StatCard>
 
+        <Text style={[styles.calText,{color:text}]}>Select date:</Text>
         <Calendar
         initialDate={date.toDateString()}
         hideExtraDays
@@ -40,7 +41,7 @@ return(
         }}
         style={{
             marginHorizontal:30,
-            marginTop:50,
+            marginTop:20,
             paddingBottom:20,
             borderRadius:20,
         }}
@@ -59,7 +60,7 @@ return(
 }
 
 const styles = StyleSheet.create({
-    page:{flex:1, paddingTop:100,},
-    inp:{elevation:15,},
-
+    page:{flex:1, paddingTop:100, },
+    inp:{elevation:15,flexDirection:'row',justifyContent: "space-between", alignItems: "center",},
+    calText:{marginHorizontal:20,marginTop:50,fontSize:18},
 })

@@ -8,6 +8,7 @@ export type ThemeType = {
   card: string;
   outline: string;
   placeholderText: string;
+  scrollCard: string;
 };
 
 export type ThemeProviderType = {

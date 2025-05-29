@@ -36,7 +36,7 @@ export default function Profile() {
                         <Text style={[ {color: text}]}>UPI details</Text>
                         <Icon name="chevron-right" size={24} color={text} />
                     </StatCard>
-                    <StatCard>
+                    <StatCard style={styles.itemsCard}>
                         <Text style={[ {color: text}]}>Bank details</Text>
                         <Icon name="chevron-right" size={24} color={text} />
                     </StatCard>
@@ -47,15 +47,15 @@ export default function Profile() {
                         <Text style={[ {color: text}]}>Rate us</Text>
                         <Icon name="chevron-right" size={24} color={text} />
                     </StatCard>
-                    <StatCard>
+                    <StatCard style={styles.itemsCard}>
                         <Text style={[ {color: text}]}>Terms & Conditions</Text>
                         <Icon name="chevron-right" size={24} color={text} />
                     </StatCard>
-                    <StatCard>
+                    <StatCard style={styles.itemsCard}>
                         <Text style={[ {color: text}]}>Support</Text>
                         <Icon name="chevron-right" size={24} color={text} />
                     </StatCard>
-                    <StatCard>
+                    <StatCard style={styles.itemsCard}>
                         <Text style={[ {color: text}]}>Logout options</Text>
                         <Icon name="chevron-right" size={24} color={text} />
                     </StatCard>
