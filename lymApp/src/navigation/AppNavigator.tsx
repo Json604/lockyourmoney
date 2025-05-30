@@ -1,4 +1,4 @@
-import { NavigationContainer, NavigatorScreenParams } from "@react-navigation/native";
+import { DarkTheme, NavigationContainer, NavigatorScreenParams } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -43,7 +43,8 @@ export default function AppNavigator(){
                         name={focused ? "home-variant" : "home-variant-outline"} 
                         color={color}
                          size={27}/>
-                    )
+                    ),
+                    
                 }}
                 />
                 <Tab.Screen
@@ -55,7 +56,7 @@ export default function AppNavigator(){
                         name={focused ? "compass" : "compass-outline"} 
                         color={color} 
                         size={27}/>
-                    )
+                    ),
                 }}
                 />
                 <Tab.Screen
@@ -67,7 +68,7 @@ export default function AppNavigator(){
                         name={focused ? "account" : "account-outline"} 
                         color={color} 
                         size={27}/>
-                    )
+                    ),
                 }}
                 />
             </Tab.Navigator>

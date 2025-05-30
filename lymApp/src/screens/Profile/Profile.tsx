@@ -17,7 +17,7 @@ export default function Profile() {
                     {/* Profile Picture */}
                     <View style={styles.pfpWrapper}>
                         <Image
-                            source={require("../../../src/assets/profile_pic/pfp.png")}
+                            source={require("../../../src/assets/profile_pic/pfp2.png")}
                             style={styles.pfp}
                         />
                     </View>
