@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { View , TextInput, Text, ScrollView, StyleSheet } from "react-native";
 import { ThemeContext } from "../../context/useTheme";
-import StatCard from "../../components/ui/StatCard";
 import {Calendar} from "react-native-calendars";
-import DynCard from "../../components/ui/dynCard";
+import DynCard from "../../components/cards/dynCard";
+import StatCard from "../../components/cards/StatCard";
 import { useNavigation } from "@react-navigation/native";
 import { LockScreenNavProp } from "../../types/navTypes";
 

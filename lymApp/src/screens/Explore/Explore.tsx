@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from "react";
 import { View, Text, StyleSheet, Dimensions, Image, ScrollView } from "react-native";
 import { ThemeContext } from "../../context/useTheme";
-import DynCard from "../../components/ui/dynCard";
+import DynCard from "../../components/cards/dynCard";
 import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
 import Animated, { useAnimatedStyle, interpolate, Extrapolate, useSharedValue } from "react-native-reanimated";
 import { props } from "../../types/navTypes";

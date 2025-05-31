@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Image, StyleSheet, Text, View , ScrollView} from "react-native";
 import { ThemeContext } from "../../context/useTheme";
-import DynCard from "../../components/ui/dynCard";
+import DynCard from "../../components/cards/dynCard";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import StatCard from "../../components/ui/StatCard";
 import DeviceInfo from "react-native-device-info";
+
 
 export default function Profile() {
     const { background,text,subtext,outline,placeholderText } = useContext(ThemeContext);
@@ -32,33 +32,33 @@ export default function Profile() {
     
                 <View>
                     <Text style={[styles.title , {color: text}]}>Payment Methods</Text>
-                    <StatCard style={styles.itemsCard}>
+                    <DynCard style={styles.itemsCard}>
                         <Text style={[ {color: text}]}>UPI details</Text>
                         <Icon name="chevron-right" size={24} color={text} />
-                    </StatCard>
-                    <StatCard style={styles.itemsCard}>
+                    </DynCard>
+                    <DynCard style={styles.itemsCard}>
                         <Text style={[ {color: text}]}>Bank details</Text>
                         <Icon name="chevron-right" size={24} color={text} />
-                    </StatCard>
+                    </DynCard>
                 </View>
                 <View style={{marginTop:16}}>
                     <Text style={[styles.title , {color: text}]}>Others</Text>
-                    <StatCard style={styles.itemsCard}>
+                    <DynCard style={styles.itemsCard}>
                         <Text style={[ {color: text}]}>Rate us</Text>
                         <Icon name="chevron-right" size={24} color={text} />
-                    </StatCard>
-                    <StatCard style={styles.itemsCard}>
+                    </DynCard>
+                    <DynCard style={styles.itemsCard}>
                         <Text style={[ {color: text}]}>Terms & Conditions</Text>
                         <Icon name="chevron-right" size={24} color={text} />
-                    </StatCard>
-                    <StatCard style={styles.itemsCard}>
-                        <Text style={[ {color: text}]}>Support</Text>
+                    </DynCard>
+                    <DynCard style={styles.itemsCard}>
+                        <Text style={[ {color: text}]}>Customer Support</Text>
                         <Icon name="chevron-right" size={24} color={text} />
-                    </StatCard>
-                    <StatCard style={styles.itemsCard}>
+                    </DynCard>
+                    <DynCard style={styles.itemsCard}>
                         <Text style={[ {color: text}]}>Logout options</Text>
                         <Icon name="chevron-right" size={24} color={text} />
-                    </StatCard>
+                    </DynCard>
                 </View>
                 <View style={styles.footer}>
                     <Text style={{color: subtext}}>App version {version}</Text>
@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
     cardSubText: {fontSize: 15,marginLeft: 30,},
     matIcon:{fontSize: 24, color: '#666',position: 'absolute',top: 30,right: 10,},
     title: {fontSize:20,fontWeight:'bold',marginBottom:16},
-    itemsCard:{flexDirection:'row',justifyContent: "space-between",alignItems: "center",},
+    itemsCard:{flexDirection:'row',justifyContent: "space-between",alignItems: "center",margin:10},
     footer:{flexDirection:'row',justifyContent:'center',marginTop:30},
 });
