@@ -7,7 +7,7 @@ import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 export type TabParamList = {
     Home: NavigatorScreenParams<HomeStackParamList>,
     Explore:undefined,
-    Profile:undefined,
+    Profile:NavigatorScreenParams<ProfileStackParamList>,
 }
 
 export type HomeStackParamList = {
@@ -18,3 +18,11 @@ export type HomeStackParamList = {
 export type LockScreenNavProp = CompositeNavigationProp<StackNavigationProp<HomeStackParamList, 'Lock'>,BottomTabNavigationProp<TabParamList>> ;
 
 export type props = BottomTabScreenProps<TabParamList, "Explore" >;
+
+export type ProfileStackParamList = {
+    ProfileMain:undefined,
+    EditProfile:undefined,
+    TnC:undefined,
+    Logout:undefined,
+}
+export type ProfileMainScreenNavProp = StackNavigationProp<ProfileStackParamList, 'ProfileMain'>;

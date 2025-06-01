@@ -1,9 +1,6 @@
-import React, { forwardRef, useCallback } from "react";
-import {
-  BottomSheetModal,
-  BottomSheetView,
-  BottomSheetBackdrop,
-} from "@gorhom/bottom-sheet";
+import React, { forwardRef, useCallback, useContext } from "react";
+import {BottomSheetModal,BottomSheetView,BottomSheetBackdrop,} from "@gorhom/bottom-sheet";
+import { ThemeContext } from "../../context/useTheme";
 
 type Props = {
   children: React.ReactNode;
@@ -13,17 +10,20 @@ type Props = {
   onChange?: (index: number) => void;
 };
 
+
 const CommonBottomSheet = forwardRef<BottomSheetModal, Props>(
   (
     {
       children,
       snapPoints = ["25%", "50%"],
-      backgroundColor = "#fff",
-      indicatorColor = "#ccc",
+      backgroundColor,
+      indicatorColor,
       onChange,
     },
     ref
   ) => {
+    const {scrollCard,subtext} = useContext(ThemeContext);
+    
     const handleSheetChanges = useCallback(
       (index: number) => {
         if (onChange) onChange(index);
@@ -38,10 +38,10 @@ const CommonBottomSheet = forwardRef<BottomSheetModal, Props>(
         snapPoints={snapPoints}
         index={0}
         backgroundStyle={{
-          backgroundColor,
+          backgroundColor:scrollCard,
           borderRadius: 30,
         }}
-        handleIndicatorStyle={{ backgroundColor: indicatorColor }}
+        handleIndicatorStyle={{ backgroundColor: subtext }}
         backdropComponent={(props) => (
           <BottomSheetBackdrop
             {...props}

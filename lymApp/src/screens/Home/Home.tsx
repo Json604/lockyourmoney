@@ -7,7 +7,7 @@ import DynCard from "../../components/cards/dynCard";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from "@react-navigation/native";
 import { LockScreenNavProp } from "../../types/navTypes";
-import { BottomSheetModal, BottomSheetModalProvider ,BottomSheetView, BottomSheetBackdrop} from "@gorhom/bottom-sheet";
+import { BottomSheetModal} from "@gorhom/bottom-sheet";
 import LottieView from "lottie-react-native";
 import CommonBottomSheet from "../../components/modal/CommonBottomSheet";
 

@@ -2,7 +2,7 @@ import { DarkTheme, NavigationContainer, NavigatorScreenParams } from "@react-na
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from 'react-native-vector-icons/Ionicons'
-import Profile from "../screens/Profile/Profile";
+import ProfileNavigator from "./ProfileNavigator";
 import HomeNavigator from "./HomeNavigator";
 import Explore from "../screens/Explore/Explore";
 import { TabParamList } from "../types/navTypes";
@@ -11,9 +11,9 @@ const Tab = createBottomTabNavigator<TabParamList>();
 
 export default function AppNavigator(){
     return(
-        <NavigationContainer>
+        <NavigationContainer theme={DarkTheme}>
             <Tab.Navigator
-            initialRouteName="Home"
+            initialRouteName="Profile"
             screenOptions={{
                 tabBarActiveTintColor: 'rgb(255, 255, 255)',
                 tabBarInactiveTintColor: 'rgba(187, 176, 176, 0.75)',
@@ -61,7 +61,7 @@ export default function AppNavigator(){
                 />
                 <Tab.Screen
                 name="Profile"
-                component={Profile}
+                component={ProfileNavigator}
                 options={{
                     tabBarIcon:({color,focused}: {color:string, focused: boolean}) => (
                         <MaterialCommunityIcons 

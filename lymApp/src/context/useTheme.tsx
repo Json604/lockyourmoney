@@ -12,6 +12,10 @@ const theme = {
     outline: 'rgb(56, 55, 55)',
     placeholderText:'rgb(122, 119, 119)',
     scrollCard: '#1E1E1E',
+    choice1:"rgb(255, 215, 0)",
+    choice2:"rgb(78, 75, 57)",
+    highAtnshn:'rgb(255, 0, 0)',
+    lowAtnshn:'rgb(104, 47, 47)',
 }
 
 export const ThemeContext = createContext<ThemeType>(theme);

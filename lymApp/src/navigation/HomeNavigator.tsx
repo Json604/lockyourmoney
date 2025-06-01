@@ -21,7 +21,6 @@ export default function HomeNavigator(){
             <Stack.Screen
             name="Lock"
             component={Lock}
-            options={{animation:'slide_from_right'}}
             />
         </Stack.Navigator>
     )
