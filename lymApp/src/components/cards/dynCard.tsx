@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 16, // rounded corners
     padding: 16, // padding inside the card
+    // {ios}
     shadowColor: "white", // shadow color
     shadowOffset: {
       width: 0, // horizontal shadow offset
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.1, // shadow opacity
     shadowRadius: 6, // shadow blur radius
+    // {android}
     elevation: 1, // for Android shadow
-    // margin: 10, // some margin for spacing between other elements
   },
 })

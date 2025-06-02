@@ -7,6 +7,7 @@ type Props = {
   snapPoints?: (string | number)[];
   backgroundColor?: string;
   indicatorColor?: string;
+  keyboardBehavior:string;
   onChange?: (index: number) => void;
 };
 
@@ -18,6 +19,7 @@ const CommonBottomSheet = forwardRef<BottomSheetModal, Props>(
       snapPoints = ["25%", "50%"],
       backgroundColor,
       indicatorColor,
+      keyboardBehavior,
       onChange,
     },
     ref
@@ -41,6 +43,7 @@ const CommonBottomSheet = forwardRef<BottomSheetModal, Props>(
           backgroundColor:scrollCard,
           borderRadius: 30,
         }}
+        keyboardBehavior='extend'
         handleIndicatorStyle={{ backgroundColor: subtext }}
         backdropComponent={(props) => (
           <BottomSheetBackdrop

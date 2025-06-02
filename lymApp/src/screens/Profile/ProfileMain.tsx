@@ -1,5 +1,5 @@
 import { useCallback, useContext, useRef, useState } from "react";
-import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, Linking } from "react-native";
+import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity, Linking,} from "react-native";
 import { ThemeContext } from "../../context/useTheme";
 import DynCard from "../../components/cards/dynCard";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -10,9 +10,12 @@ import Collapsible from "react-native-collapsible";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import CommonBottomSheet from "../../components/modal/CommonBottomSheet";
 import CompTextInput from "../../components/inputCard/TextInput";
+import Modal from 'react-native-modal'
+import StarRating from "react-native-star-rating-widget";
+import StatCard from "../../components/cards/StatCard";
 
 export default function ProfileMain() {
-    const { primary,background, text, subtext, outline } = useContext(ThemeContext);
+    const { primary,background, text, subtext, scrollCard ,highAtnshn} = useContext(ThemeContext);
     const version: string = DeviceInfo.getVersion();
     const nav = useNavigation<ProfileMainScreenNavProp>();
     const [isSupportOpen, setIsSupportOpen] = useState(false);
@@ -21,6 +24,14 @@ export default function ProfileMain() {
     const handleUpiPress = useCallback(() => {
         upiRef.current?.present();
     },[])
+
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
+
+    const [rating, setRating] = useState(0);
 
     return (
         <ScrollView contentContainerStyle={[styles.scrollContent, { backgroundColor: background }]}>
@@ -39,26 +50,51 @@ export default function ProfileMain() {
 
                 {/* Payment Methods */}
                 <Text style={[styles.title, { color: text }]}>Payment Methods</Text>
-                <DynCard style={styles.itemsCard}>
-                    <Text style={[{ color: text }]} onPress={handleUpiPress}>UPI details</Text>
+                <DynCard style={styles.itemsCard} onPress={handleUpiPress}>
+                    <Text style={[{ color: text }]}>UPI details</Text>
                     <Icon name="chevron-right" size={24} color={text} />
                 </DynCard>
                 <CommonBottomSheet
                 ref={upiRef}
-                snapPoints={['30%']}
+                snapPoints={['60%','70%']}
+                keyboardBehavior="extend"
                 >
                     <View>
-                        <CompTextInput/>
+                        <CompTextInput
+                        placeholder="enter your upi id"
+                        />
+                        <DynCard style={{elevation:10,shadowColor:highAtnshn,marginTop:40,marginHorizontal:150}} onPress={() => upiRef.current?.close()}>
+                            <Text style={{color:highAtnshn,textAlign:'center'}} >Submit</Text>
+                        </DynCard>
                     </View>
                 </CommonBottomSheet>
 
                 {/* Others */}
                 <Text style={[styles.title, { color: text, marginTop: 16 }]}>Others</Text>
-                <DynCard style={styles.itemsCard} >
+                <DynCard style={styles.itemsCard} onPress={toggleModal}>
                     <Text style={[{ color: text }]}>Rate us</Text>
                     <Icon name="chevron-right" size={24} color={text} />
                 </DynCard>
-
+                <Modal 
+                isVisible={isModalVisible}
+                coverScreen={false}
+                onBackdropPress={() => setModalVisible(!isModalVisible)}
+                onBackButtonPress={() => setModalVisible(!isModalVisible)}
+                >
+                    <StatCard style={{alignItems:'center',marginHorizontal:50,elevation:10}}>
+                        <StarRating
+                        rating={rating}
+                        onChange={setRating}
+                        enableHalfStar={false}
+                        style={{
+                            marginTop:10,
+                        }}
+                        />
+                        <DynCard style={{elevation:10,shadowColor:highAtnshn,marginVertical:20,marginTop:40}} onPress={() => setModalVisible(!isModalVisible)}>
+                            <Text style={{color:highAtnshn}} >Submit Rating</Text>
+                        </DynCard>
+                    </StatCard>
+                </Modal>
                 <DynCard style={styles.itemsCard} onPress={() => nav.navigate("TnC")}>
                     <Text style={[{ color: text }]}>Terms & Conditions</Text>
                     <Icon name="chevron-right" size={24} color={text} />

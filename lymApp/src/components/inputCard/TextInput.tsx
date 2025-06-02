@@ -1,22 +1,24 @@
 import React, { useContext } from 'react';
-import {StyleSheet, TextInput} from 'react-native';
+import {StyleSheet, TextInput,TextInputProps} from 'react-native';
 import { ThemeContext } from '../../context/useTheme';
 
-const CompTextInput = () => {
-  const [text, onChangeText] = React.useState('Useless Text');
-  const {subtext} = useContext(ThemeContext);
+const CompTextInput = (props:TextInputProps) => {
+  const [input, setInput] = React.useState('');
+  const {text,subtext} = useContext(ThemeContext);
 
   return (
     <TextInput
-        style={[styles.input,{borderColor:subtext}]}
-        onChangeText={onChangeText}
-        value={text}
+        style={[styles.input,{borderColor:subtext,color:text}]}
+        onChangeText={setInput}
+        value={input}
+        placeholderTextColor={subtext}
+        {...props}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  input: {height: 40,margin: 12,borderWidth: 1,padding: 10,borderRadius:8,},
+  input: {height: 50,marginHorizontal:12,borderWidth: 1,padding: 10,borderRadius:8,},
 });
 
 export default CompTextInput;
