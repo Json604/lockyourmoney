@@ -1,0 +1,102 @@
+/* Make aurora cover the whole screen AND go behind text */
+.aurora-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Ensure text stacks above the canvas */
+.hero {
+  display: flex;
+  flex-direction: row;
+  z-index: 2;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.phone-container {
+  position: absolute; /* allows free movement without affecting .textR */
+  top: 50px; /* adjust this */
+  left: -200px; /* adjust this */
+  z-index: 1;
+}
+
+.phone-container img {
+  width: 1200px; /* or any size */
+  height: auto;
+}
+
+.textR{
+  width: 50%;
+  margin-top: 20%;
+  /* background-color: red; */
+  position: absolute;
+  margin-left: 900px;
+  padding-right: 0px;
+}
+
+.tagline {
+  font-family:'Roboto', sans-serif;
+  font-size: 5rem;
+  font-weight: 250;
+  color: white;
+  margin-bottom: 0;
+}
+
+.bold {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 700;
+  color: white;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.subtitle {
+  font-family:'Roboto', sans-serif;
+  font-size: 1.2rem;
+  color: #aaa;
+  margin: 1rem 0 2rem;
+  max-width: 100%;
+}
+
+.waitlist{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.waitlist form {
+  display: flex;
+  gap: 20px;
+}
+
+input{
+  background-color: rgb(92, 89, 89);
+  border-width: 0rem;
+  border-radius: 10px;
+  padding-left: 1rem;
+  padding-right: 9rem;
+  color: white;
+  
+}
+
+input::placeholder {
+  color: rgb(221, 217, 217); /* Any valid color */
+}
+
+button{
+  padding: 1rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  background-color: #FFD700;
+  border-radius: 30px;
+  border-width: 0rem;
+  cursor: pointer;
+}

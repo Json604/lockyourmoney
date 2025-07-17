@@ -1,0 +1,10 @@
+/* Global fix - add this to your root CSS file or Aurora.css if global */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: black;
+}
+
