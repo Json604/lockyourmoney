@@ -11,8 +11,8 @@ function App() {
       <Aurora
         colorStops={["#707070", "#FCFF66", "#707070"]}
         blend={0.4}
-        amplitude={isMobile ? 0.3 : 1.0}
-        speed={isMobile ? 0.3 : 1.0}
+        amplitude={isMobile ? 0.5 : 1.0}
+        speed={isMobile ? 0.5 : 1.0}
       />
       
 
