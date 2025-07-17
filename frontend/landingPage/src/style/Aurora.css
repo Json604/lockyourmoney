@@ -145,25 +145,31 @@ button {
     font-size: 1rem;
   }
 
+
   .waitlist {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    width: 90%;
+    margin: 0 auto;
   }
 
   .waitlist form {
+    display: flex;
     flex-direction: column;
     width: 100%;
     gap: 10px;
   }
 
-  input {
+  .waitlist input {
     width: 100%;
     padding: 0.8rem 1rem;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-size: 1rem;
   }
 
-  button {
+  .waitlist button {
     width: 100%;
     padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 1rem;
   }
 }
