@@ -1,14 +1,15 @@
-/* Make aurora cover the whole screen AND go behind text */
+/* Aurora background */
 .aurora-container {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
+  overflow: hidden;
 }
 
-/* Ensure text stacks above the canvas */
+/* Hero section */
 .hero {
   display: flex;
   flex-direction: row;
@@ -19,29 +20,34 @@
   height: 100%;
 }
 
+/* Phone image container */
 .phone-container {
-  position: absolute; /* allows free movement without affecting .textR */
-  top: 50px; /* adjust this */
-  left: -200px; /* adjust this */
+  position: absolute;
+  top: 50px;
+  left: -200px;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .phone-container img {
-  width: 1200px; /* or any size */
+  width: 1200px;
   height: auto;
+  max-width: 100%;
 }
 
-.textR{
+/* Text content */
+.textR {
   width: 50%;
   margin-top: 20%;
-  /* background-color: red; */
   position: absolute;
   margin-left: 900px;
   padding-right: 0px;
 }
 
 .tagline {
-  font-family:'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 5rem;
   font-weight: 250;
   color: white;
@@ -49,7 +55,7 @@
 }
 
 .bold {
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: 700;
   color: white;
   margin-top: 0;
@@ -57,14 +63,15 @@
 }
 
 .subtitle {
-  font-family:'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.2rem;
   color: #aaa;
   margin: 1rem 0 2rem;
   max-width: 100%;
 }
 
-.waitlist{
+/* Waitlist form */
+.waitlist {
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -75,21 +82,20 @@
   gap: 20px;
 }
 
-input{
+input {
   background-color: rgb(92, 89, 89);
   border-width: 0rem;
   border-radius: 10px;
   padding-left: 1rem;
   padding-right: 9rem;
   color: white;
-  
 }
 
 input::placeholder {
-  color: rgb(221, 217, 217); /* Any valid color */
+  color: rgb(221, 217, 217);
 }
 
-button{
+button {
   padding: 1rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -99,4 +105,65 @@ button{
   border-radius: 30px;
   border-width: 0rem;
   cursor: pointer;
+}
+
+/* ===================== */
+/* ✅ MOBILE RESPONSIVE  */
+/* ===================== */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+    text-align: center;
+    height: auto;
+  }
+
+  .phone-container {
+    position: static;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .phone-container img {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .textR {
+    position: static;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .tagline {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .waitlist {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .waitlist form {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.8rem;
+  }
 }
