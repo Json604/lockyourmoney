@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 header {
   position: absolute;
@@ -10,8 +11,8 @@ header {
   z-index: 10;
 }
 header img {
-  height: 32px;
-  width: 32px;
+  height: 40px;
+  width: 40px;
 }
 header h1 {
   color: white;
@@ -69,15 +70,16 @@ header h1 {
 }
 
 .tagline {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 5rem;
-  font-weight: 250;
+  font-weight: 150;
   color: white;
   margin-bottom: 0;
 }
 
 .bold {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-size: 5rem;
   font-weight: 700;
   color: white;
   margin-top: 0;
@@ -85,7 +87,7 @@ header h1 {
 }
 
 .subtitle {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.2rem;
   color: #aaa;
   margin: 1rem 0 2rem;
@@ -160,6 +162,10 @@ button {
   }
 
   .tagline {
+    font-size: 2.5rem;
+  }
+  
+  .bold{
     font-size: 2.5rem;
   }
 

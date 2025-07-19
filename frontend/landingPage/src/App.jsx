@@ -62,7 +62,7 @@ function App() {
         </motion.h1>
 
         <motion.h1
-          className="tagline bold"
+          className="bold"
           variants={{
             hidden: { x: 200, opacity: 0 },
             visible: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 70 } }
