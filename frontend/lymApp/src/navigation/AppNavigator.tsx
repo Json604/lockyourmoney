@@ -13,7 +13,7 @@ export default function AppNavigator(){
     return(
         <NavigationContainer theme={DarkTheme}>
             <Tab.Navigator
-            initialRouteName="Profile"
+            initialRouteName="Explore"
             screenOptions={{
                 tabBarActiveTintColor: 'rgb(255, 255, 255)',
                 tabBarInactiveTintColor: 'rgba(187, 176, 176, 0.75)',
