@@ -3,6 +3,7 @@ import './style/Aurora.css';
 import phoneImg from './assets/phoneMockup.png';
 import logo from './assets/image.png'
 import { motion } from 'framer-motion';
+import demo from './assets/demo.webm';
 
 function App() {
   const isMobile = window.innerWidth < 768;
@@ -89,10 +90,12 @@ function App() {
           }}
         >
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              console.log("Valid email submitted:", e.target.email.value);
-            }}
+            // onSubmit={(e) => {
+            //   e.preventDefault();
+            //   console.log("Valid email submitted:", e.target.email.value);
+            // }}
+            action={"https://getlaunchlist.com/s/5gabMY"}
+            method='POST'
           >
             <input
               name="email"
