@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+/* ================== GLOBAL ================== */
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  background-color: #000;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ================== HEADER ================== */
 header {
   position: absolute;
   top: 1rem;
@@ -21,7 +31,7 @@ header h1 {
   font-family: 'Anta', sans-serif;
 }
 
-/* Aurora background */
+/* ================== AURORA ================== */
 .aurora-container {
   width: 100vw;
   height: 100vh;
@@ -32,7 +42,7 @@ header h1 {
   overflow: hidden;
 }
 
-/* Hero section */
+/* ================== HERO ================== */
 .hero {
   display: flex;
   flex-direction: row;
@@ -40,10 +50,10 @@ header h1 {
   position: relative;
   text-align: center;
   width: 100%;
-  height: 100%;
+  min-height: 100vh; /* 🟢 Changed from height: 100% */
 }
 
-/* Phone image container */
+/* ================== PHONE ================== */
 .phone-container {
   position: absolute;
   top: 50px;
@@ -53,14 +63,13 @@ header h1 {
   justify-content: center;
   align-items: center;
 }
-
 .phone-container img {
   width: 1200px;
   height: auto;
   max-width: 100%;
 }
 
-/* Text content */
+/* ================== TEXT ================== */
 .textR {
   width: 50%;
   margin-top: 20%;
@@ -68,7 +77,6 @@ header h1 {
   margin-left: 900px;
   padding-right: 0px;
 }
-
 .tagline {
   font-family: 'Inter', sans-serif;
   font-size: 5rem;
@@ -76,7 +84,6 @@ header h1 {
   color: white;
   margin-bottom: 0;
 }
-
 .bold {
   font-family: 'Inter', sans-serif;
   font-size: 5rem;
@@ -85,7 +92,6 @@ header h1 {
   margin-top: 0;
   margin-bottom: 0;
 }
-
 .subtitle {
   font-family: 'Inter', sans-serif;
   font-size: 1.2rem;
@@ -94,18 +100,16 @@ header h1 {
   max-width: 100%;
 }
 
-/* Waitlist form */
+/* ================== FORM ================== */
 .waitlist {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
-
 .waitlist form {
   display: flex;
   gap: 20px;
 }
-
 input {
   background-color: rgb(92, 89, 89);
   border-width: 0rem;
@@ -114,15 +118,11 @@ input {
   padding-right: 9rem;
   color: white;
 }
-
 input::placeholder {
   color: rgb(221, 217, 217);
 }
-
 button {
-  padding: 1rem;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+  padding: 1rem 2.5rem;
   font-size: 1rem;
   font-family: 'Roboto', sans-serif;
   background-color: #FFD700;
@@ -131,61 +131,106 @@ button {
   cursor: pointer;
 }
 
-/* ===================== */
-/* ✅ MOBILE RESPONSIVE  */
-/* ===================== */
+/* ================== SCROLL INDICATOR ================== */
+.scroll-indicator-wrapper {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: bounce 2s infinite;
+}
+
+.scroll-indicator {
+  width: 24px;
+  height: 40px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.scroll-indicator-text {
+  color: white;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.scroll-indicator::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  animation: scroll-dot 2s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+@keyframes scroll-dot {
+  0% { top: 8px; opacity: 1; }
+  100% { top: 24px; opacity: 0; }
+}
+
+/* ================== VIDEO SECTION ================== */
+.video-section {
+  position: relative;
+  margin-top: 6rem;
+  padding: 2rem;
+  margin-bottom: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+/* ================== RESPONSIVE ================== */
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
     align-items: center;
     padding-top: 2rem;
     text-align: center;
-    height: auto;
+    min-height: auto;
   }
-
   .phone-container {
     position: static;
     width: 100%;
     margin-bottom: 2rem;
   }
-
   .phone-container img {
     width: 90%;
     max-width: 400px;
   }
-
   .textR {
     position: static;
     width: 90%;
     margin: 0 auto;
     text-align: center;
   }
-
-  .tagline {
+  .tagline, .bold {
     font-size: 2.5rem;
   }
-
-  .bold{
-    font-size: 2.5rem;
-  }
-
   .subtitle {
     font-size: 1rem;
   }
-
-
   .waitlist {
     width: 90%;
     margin: 0 auto;
   }
-
   .waitlist form {
-    display: flex;
     flex-direction: column;
     width: 100%;
     gap: 10px;
   }
-
   .waitlist input {
     width: 100%;
     padding: 0.8rem 1rem;
@@ -193,7 +238,6 @@ button {
     border-radius: 8px;
     font-size: 1rem;
   }
-
   .waitlist button {
     width: 100%;
     padding: 0.8rem;
