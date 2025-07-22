@@ -439,15 +439,24 @@ button {
     font-size: 1rem;
   }
   .video-section {
-    padding: 2rem 1rem;
-    /* Removed margin-top: 4rem; here as well */
-    /* Add back if needed for spacing from previous section, but will push 100vh down */
+    /* To make the video as large as possible without overflowing,
+       we remove all padding from its container on phones. */
+    padding: 0; /* Removed all padding */
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-sizing: border-box;
+    overflow: hidden;
   }
   .video-section video {
-    width: 90%;
+    width: 100%; /* Video now takes 100% of the container's width, which has no padding */
     height: auto;
     margin-bottom: 0;
-    max-width: 500px;
+    max-width: none;
   }
 
   /* --- SCROLL INDICATOR FIX FOR PHONES --- */
