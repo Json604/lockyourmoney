@@ -4,7 +4,7 @@ import './style/Aurora.css';
 import phoneImg from './assets/phoneMockup.png';
 import logo from './assets/image.png';
 import { motion } from 'framer-motion';
-import demo from './assets/demo.webm';
+import demo from './assets/demo3.webm';
 
 function App() {
   const isMobile = window.innerWidth < 768;

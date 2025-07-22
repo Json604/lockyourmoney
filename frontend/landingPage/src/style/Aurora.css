@@ -9,6 +9,13 @@ html, body {
   background-color: #000;
   font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Add this for consistent box model behavior */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 /* ================== HEADER ================== */
@@ -51,7 +58,7 @@ header h1 {
   position: relative;
   text-align: center;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100vh; /* Keeps hero full height */
 }
 
 /* ================== PHONE ================== */
@@ -67,7 +74,7 @@ header h1 {
 .phone-container img {
   width: 1200px;
   height: auto;
-  max-width: 100%;
+  max-width: none;
 }
 
 /* ================== TEXT ================== */
@@ -77,6 +84,7 @@ header h1 {
   position: absolute;
   margin-left: 900px;
   padding-right: 0px;
+  z-index: 2;
 }
 .tagline {
   font-family: 'Inter', sans-serif;
@@ -84,6 +92,7 @@ header h1 {
   font-weight: 150;
   color: white;
   margin-bottom: 0;
+  line-height: 1.1;
 }
 .bold {
   font-family: 'Inter', sans-serif;
@@ -92,6 +101,7 @@ header h1 {
   color: white;
   margin-top: 0;
   margin-bottom: 0;
+  line-height: 1.1;
 }
 .subtitle {
   font-family: 'Inter', sans-serif;
@@ -113,11 +123,13 @@ header h1 {
 }
 input {
   background-color: rgb(92, 89, 89);
-  border-width: 0rem;
+  border: none;
   border-radius: 10px;
   padding-left: 1rem;
   padding-right: 9rem;
   color: white;
+  box-sizing: border-box;
+  height: 3rem;
 }
 input::placeholder {
   color: rgb(221, 217, 217);
@@ -128,20 +140,23 @@ button {
   font-family: 'Roboto', sans-serif;
   background-color: #FFD700;
   border-radius: 30px;
-  border-width: 0rem;
+  border: none;
   cursor: pointer;
+  color: #333;
+  white-space: nowrap;
 }
 
 /* ================== SCROLL INDICATOR ================== */
 .scroll-indicator-wrapper {
   position: absolute;
-  bottom: 2rem;
+  bottom: 2rem; /* Default bottom value */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   animation: bounce 2s infinite;
+  z-index: 2;
 }
 
 .scroll-indicator {
@@ -183,69 +198,260 @@ button {
 /* ================== VIDEO SECTION ================== */
 .video-section {
   position: relative;
-  margin-top: 6rem;
-  padding: 2rem;
+  /* Removed margin-top: 6rem; to allow it to be 100vh from the top */
+  height: 100vh; /* Make it full viewport height */
+  width: 100vw; /* Make it full viewport width explicitly */
+  padding: 2rem; /* Keep padding for internal spacing */
   background: #000;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically within the 100vh space */
   z-index: 2;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent video content from overflowing if too large */
+}
+.video-section video {
+  width: 80%; /* Video takes 80% of its parent's width */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 1200px;
+  max-height: 90vh; /* Constrain video height to leave room for padding/UI */
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* ================== RESPONSIVE ================== */
+/* ================== RESPONSIVE MEDIA QUERIES ================== */
+
+/* --- Extra Large Desktops (Min-width: 1815px) --- */
+@media (min-width: 1815px) {
+    .phone-container {
+        top: 50px;
+        left: -200px;
+    }
+    .phone-container img {
+        width: 1200px;
+    }
+    .textR {
+        width: 50%;
+        margin-top: 20%;
+        margin-left: 900px;
+        text-align: center;
+    }
+    .tagline, .bold {
+        font-size: 5rem;
+    }
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    .waitlist input {
+        padding-right: 9rem;
+    }
+}
+
+
+/* --- Medium Desktops / Large Laptops (Max-width: 1814px AND Min-width: 1201px) --- */
+@media (max-width: 1814px) and (min-width: 1201px) {
+  .hero {
+    padding: 0;
+  }
+  .phone-container {
+    top: 50px;
+    left: -11.02vw;
+    width: 66.15vw;
+    max-width: 1000px;
+    z-index: 3;
+  }
+  .phone-container img {
+    width: 100%;
+    max-width: none;
+  }
+
+  .textR {
+    width: 50vw;
+    margin-top: 15%;
+    margin-left: 49.61vw;
+    text-align: center;
+    max-width: 700px;
+    z-index: 4;
+  }
+  .tagline, .bold {
+    font-size: clamp(3rem, 2.75vw, 5rem);
+  }
+  .subtitle {
+    font-size: clamp(0.9rem, 0.7vw, 1.2rem);
+  }
+  .waitlist input {
+    padding-right: clamp(1.5rem, 5vw, 9rem);
+  }
+}
+
+/* --- Tablets & Small Laptops (Max-width: 1200px) --- */
+@media (max-width: 1200px) {
+  header {
+    top: 1.5rem;
+    left: 2rem;
+  }
+  header img {
+    height: 40px;
+    width: 40px;
+  }
+  header h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .phone-container {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 45%;
+    margin: 0;
+    max-width: 500px;
+    transform: none;
+  }
+  .phone-container img {
+    width: 100%;
+    max-width: none;
+  }
+
+  .textR {
+    position: relative;
+    width: 52%;
+    margin: 0;
+    padding-left: 1rem;
+    text-align: left;
+  }
+  .tagline, .bold {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    line-height: 1.1;
+  }
+  .subtitle {
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  }
+  .waitlist {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 15px;
+  }
+  .waitlist form {
+    flex-direction: row;
+    gap: 15px;
+  }
+  input {
+    padding-right: 1rem;
+    width: 180px;
+    height: 2.8rem;
+  }
+  button {
+    padding: 0.8rem 1.5rem;
+  }
+  .video-section video {
+    width: 70%;
+    max-width: 900px;
+    margin-bottom: 0;
+  }
+
+  /* --- SCROLL INDICATOR FIX FOR TABLETS --- */
+  .scroll-indicator-wrapper {
+    bottom: 4rem; /* Increase bottom margin to move it up */
+  }
+}
+
+/* --- Phones (Max-width: 768px) --- */
 @media (max-width: 768px) {
+  header {
+    top: 0.75rem;
+    left: 0.75rem;
+  }
+  header img {
+    height: 32px;
+    width: 32px;
+  }
+  header h1 {
+    font-size: 1.25rem;
+  }
+
   .hero {
     flex-direction: column;
     align-items: center;
-    padding-top: 2rem;
+    padding-top: 4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     text-align: center;
+    justify-content: flex-start;
   }
   .phone-container {
     position: static;
     width: 100%;
     margin-bottom: 2rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
   .phone-container img {
     width: 90%;
-    max-width: 400px;
+    max-width: 350px;
   }
   .textR {
     position: static;
-    width: 90%;
+    width: 95%;
+    max-width: 450px;
     margin: 0 auto;
+    padding: 0 1rem;
     text-align: center;
   }
   .tagline, .bold {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    line-height: 1.1;
   }
   .subtitle {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    margin: 1rem auto 2rem;
+    max-width: 85%;
   }
   .waitlist {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
+    flex-direction: column;
+    gap: 10px;
   }
   .waitlist form {
     flex-direction: column;
     width: 100%;
     gap: 10px;
   }
-  .waitlist input {
+  input {
     width: 100%;
     padding: 0.8rem 1rem;
-    box-sizing: border-box;
     border-radius: 8px;
     font-size: 1rem;
+    height: 2.5rem;
   }
-  .waitlist button {
+  button {
     width: 100%;
     padding: 0.8rem;
     border-radius: 8px;
     font-size: 1rem;
   }
+  .video-section {
+    padding: 2rem 1rem;
+    /* Removed margin-top: 4rem; here as well */
+    /* Add back if needed for spacing from previous section, but will push 100vh down */
+  }
   .video-section video {
-    width: 200%;
-    height: 200%;
-    margin-bottom: 40%;
+    width: 90%;
+    height: auto;
+    margin-bottom: 0;
+    max-width: 500px;
+  }
+
+  /* --- SCROLL INDICATOR FIX FOR PHONES --- */
+  .scroll-indicator-wrapper {
+    bottom: 6rem; /* Increase bottom margin significantly for phones */
   }
 }
