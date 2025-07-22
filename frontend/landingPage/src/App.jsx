@@ -17,9 +17,7 @@ function App() {
           videoRef.current.play();
         }
       },
-      // Change threshold from 0.5 to 0 or 0.01
-      { threshold: 0 } // Video will play as soon as even 1 pixel is visible
-      // Or { threshold: 0.01 } for a tiny bit of buffer
+      { threshold: 0.5 }
     );
 
     if (videoRef.current) {
