@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import Aurora from './components/Aurora';
 import './style/Aurora.css';
 import phoneImg from './assets/phoneMockup.png';
-import logo from './assets/image.png';
+import logo from './assets/siteImage.png';
 import { motion } from 'framer-motion';
 import demo from './assets/demo3.webm';
 
