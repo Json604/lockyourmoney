@@ -145,7 +145,7 @@ export default function Lock() {
             />
 
             <DynCard
-                style={{ marginTop: 150, marginHorizontal: 160, backgroundColor: primary }}
+                style={{ marginTop: 30, marginHorizontal: 160, backgroundColor: primary }}
                 onPress={toggleModal}
             >
                 <Text style={{ textAlign: "center", fontSize: 18, fontWeight: "bold" }}>
