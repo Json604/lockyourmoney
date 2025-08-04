@@ -163,17 +163,19 @@ export default function Lock() {
                     <Text style={{ color: text, marginTop: 4, textAlign: 'center' }}>You are going to lock ₹{lockedAmount} till {storedTill}</Text>
                     <Text style={{ color: text, marginTop: 4 }}>That's {lockedDays} days from today.</Text>
                     <DynCard
-                        style={{
-                            elevation: 10,
-                            shadowColor: highAtnshn,
-                            marginVertical: 20,
-                            marginTop: 40
-                        }}
-                        // take to payment gateway //
-                        onPress={() => setModalVisible(false)}
-                    >
-                        <Text style={{ color: highAtnshn }}>Confirm lock</Text>
-                    </DynCard>
+  style={{
+    elevation: 10,
+    shadowColor: highAtnshn,
+    marginVertical: 20,
+    marginTop: 40
+  }}
+  onPress={() => {
+    setModalVisible(false);
+    nav.navigate('MockPaymentScreen');
+  }}
+>
+  <Text style={{ color: highAtnshn }}>Confirm lock</Text>
+    </DynCard>
                 </StatCard>
             </Modal>
         </ScrollView>

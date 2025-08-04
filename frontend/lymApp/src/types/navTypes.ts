@@ -13,6 +13,7 @@ export type TabParamList = {
 export type HomeStackParamList = {
     HomeMain: any;
     Lock: any;
+    MockPaymentScreen: any;
 }
 
 export type LockScreenNavProp = CompositeNavigationProp<StackNavigationProp<HomeStackParamList, 'Lock'>,BottomTabNavigationProp<TabParamList>> ;
