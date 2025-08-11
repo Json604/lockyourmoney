@@ -4,13 +4,26 @@ import './style/Aurora.css';
 import phoneImg from './assets/phoneMockup.png';
 import logo from './assets/siteImage.png';
 import { motion } from 'framer-motion';
-import demo from '/videos/demo2.mp4';
+import Hls from 'hls.js'; // <-- Added HLS support
 
 function App() {
   const isMobile = window.innerWidth < 768;
   const videoRef = useRef(null);
 
   useEffect(() => {
+    // HLS setup
+    if (videoRef.current) {
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource('/videos/index.m3u8'); // <-- your chunked video playlist
+        hls.attachMedia(videoRef.current);
+      } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
+        // Safari / iOS native HLS
+        videoRef.current.src = '/videos/index.m3u8';
+      }
+    }
+
+    // Intersection Observer to autoplay when visible
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && videoRef.current) {
@@ -131,7 +144,6 @@ function App() {
           <div className="scroll-indicator" />
           <div className="scroll-indicator-text">Scroll down to learn more.</div>
         </div>
-
       </section>
 
       <section id="demo-video" className="video-section">
@@ -141,9 +153,8 @@ function App() {
           width="100%"
           muted
           playsInline
-          preload="none"
+          preload="metadata"
         >
-          <source src={demo} type="video/webm" />
           Your browser does not support the video tag.
         </video>
       </section>
