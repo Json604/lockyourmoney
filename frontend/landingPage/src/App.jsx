@@ -25,7 +25,7 @@ function App() {
     } else {
       // Mobile: Use direct MP4 file
       if (videoRef.current) {
-        videoRef.current.src = '/videos/demo-mobile.mp4'; // lighter mobile version
+        videoRef.current.src = '/videos/demo2.mp4'; // lighter mobile version
       }
     }
 
@@ -160,7 +160,6 @@ function App() {
           muted
           playsInline
           preload="metadata"
-          autoPlay
         >
           Your browser does not support the video tag.
         </video>
