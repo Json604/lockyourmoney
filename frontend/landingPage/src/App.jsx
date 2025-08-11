@@ -4,26 +4,32 @@ import './style/Aurora.css';
 import phoneImg from './assets/phoneMockup.png';
 import logo from './assets/siteImage.png';
 import { motion } from 'framer-motion';
-import Hls from 'hls.js'; // <-- Added HLS support
+import Hls from 'hls.js';
 
 function App() {
   const isMobile = window.innerWidth < 768;
   const videoRef = useRef(null);
 
   useEffect(() => {
-    // HLS setup
-    if (videoRef.current) {
-      if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource('/videos/index.m3u8'); // <-- your chunked video playlist
-        hls.attachMedia(videoRef.current);
-      } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
-        // Safari / iOS native HLS
-        videoRef.current.src = '/videos/index.m3u8';
+    if (!isMobile) {
+      // Desktop: Use HLS
+      if (videoRef.current) {
+        if (Hls.isSupported()) {
+          const hls = new Hls();
+          hls.loadSource('/videos/index.m3u8');
+          hls.attachMedia(videoRef.current);
+        } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
+          videoRef.current.src = '/videos/index.m3u8';
+        }
+      }
+    } else {
+      // Mobile: Use direct MP4 file
+      if (videoRef.current) {
+        videoRef.current.src = '/videos/demo-mobile.mp4'; // lighter mobile version
       }
     }
 
-    // Intersection Observer to autoplay when visible
+    // Intersection Observer for autoplay when visible
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && videoRef.current) {
@@ -42,7 +48,7 @@ function App() {
         observer.unobserve(videoRef.current);
       }
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <>
@@ -154,6 +160,7 @@ function App() {
           muted
           playsInline
           preload="metadata"
+          autoPlay
         >
           Your browser does not support the video tag.
         </video>
