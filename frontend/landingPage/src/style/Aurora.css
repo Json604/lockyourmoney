@@ -385,6 +385,7 @@ button {
     padding-right: 1rem;
     text-align: center;
     justify-content: flex-start;
+    /* min-height: 100vh; */
   }
   .phone-container {
     position: static;
@@ -461,6 +462,6 @@ button {
 
   /* --- SCROLL INDICATOR FIX FOR PHONES --- */
   .scroll-indicator-wrapper {
-    bottom: 6rem; /* Increase bottom margin significantly for phones */
+    bottom: 1rem; 
   }
 }
