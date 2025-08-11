@@ -159,7 +159,7 @@ function App() {
           width="100%"
           muted
           playsInline
-          preload="metadata"
+          // preload="metadata"
         >
           Your browser does not support the video tag.
         </video>
