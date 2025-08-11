@@ -11,7 +11,11 @@ function App() {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (!isMobile) {
+    const cores = navigator.hardwareConcurrency || 4; // default guess
+    const memory = navigator.deviceMemory || 4; // in GB
+
+    const isLowEnd = cores <= 2 || memory <= 4;
+    if (!isMobile && isLowEnd) {
       // Desktop: Use HLS
       if (videoRef.current) {
         if (Hls.isSupported()) {
