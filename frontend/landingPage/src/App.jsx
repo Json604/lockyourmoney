@@ -74,9 +74,9 @@ function App() {
         <div className='hero'>
           <motion.div
             className='phone-container'
-            initial={{ x: -300, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 60, damping: 15, duration: 1 }}
+            // initial={{ x: -300, opacity: 0 }}
+            // animate={{ x: 0, opacity: 1 }}
+            // transition={{ type: 'spring', stiffness: 60, damping: 15, duration: 1 }}
           >
             <img 
             src={phoneImg} 
