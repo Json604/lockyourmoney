@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import Aurora from './components/Aurora';
 import './style/Aurora.css';
-import phoneImg from './assets/phoneMockup.png';
-import logo from './assets/siteImage.png';
+import phoneImg from './assets/phoneMockup.webp';
+import phoneImgTab from './assets/phoneMockupTablet.webp';
+import phoneImgMob from './assets/phoneMockupMobile.webp';
+import logo from './assets/siteImage.webp';
 import { motion } from 'framer-motion';
 import Hls from 'hls.js';
 
@@ -76,7 +78,12 @@ function App() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ type: 'spring', stiffness: 60, damping: 15, duration: 1 }}
           >
-            <img src={phoneImg} alt='mockPhone' />
+            <img 
+            src={phoneImg} 
+            srcSet={`${phoneImgMob} 400w, ${phoneImgTab} 800w, ${phoneImg} 1024w`}
+            sizes='(max-width: 600px) 400px, (max-width: 1024px) 800px, 1024px'
+            alt='mockPhone' 
+            />
           </motion.div>
 
           <motion.div
