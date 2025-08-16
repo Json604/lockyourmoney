@@ -82,6 +82,7 @@ function App() {
             src={phoneImg} 
             srcSet={`${phoneImgMob} 400w, ${phoneImgTab} 800w, ${phoneImg} 1024w`}
             sizes='(max-width: 600px) 400px, (max-width: 1024px) 800px, 1024px'
+            fetchpriority="high"
             alt='mockPhone' 
             />
           </motion.div>
@@ -170,7 +171,7 @@ function App() {
           width="100%"
           muted
           playsInline
-          // preload="metadata"
+          preload="auto"
         >
           Your browser does not support the video tag.
         </video>

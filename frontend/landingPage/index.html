@@ -1,36 +1,60 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/images/image.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Lock Your Money is a digital piggy bank that helps students stop impulsive spending and save smarter." />
-    <link rel="canonical" href="https://lockyourmoney.online/" />
-    
-    <meta property="og:title" content="Lock Your Money" />
-    <meta property="og:description" content="Stop overspending. Lock your money and build better habits." />
-    <meta property="og:image" content="https://lockyourmoney.online/images/preview.png" />
-    <meta property="og:url" content="https://lockyourmoney.online" />
-    <meta property="og:type" content="website" />
-  
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Lock Your Money" />
-    <meta name="twitter:description" content="Stop overspending. Lock your money and build better habits." />
-    <meta name="twitter:image" content="https://lockyourmoney.online/images/preview.png" />
-  
-    <script src="https://getlaunchlist.com/js/widget.js" defer></script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Lock Your Money",
-      "url": "https://lockyourmoney.online",
-      "description": "A digital piggy bank to help students build smarter money habits.",
-      "applicationCategory": "FinanceApplication"
-    }
-    </script>
-    <title>Lock Your Money | Digital Piggy Bank for Students</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lock Your Money | Digital Piggy Bank for Students</title>
+
+  <!-- ✅ Preload critical hero image (fast perceived load) -->
+  <link
+    rel="preload"
+    as="image"
+    href="/images/phoneMockup.webp"
+    imagesrcset="/images/phoneMockupMobile.webp 400w, /images/phoneMockupTablet.webp 800w, /images/phoneMockup.webp 1024w"
+    imagesizes="(max-width: 600px) 400px, (max-width: 1024px) 800px, 1024px"
+    fetchpriority="high"
+  />
+
+  <!-- ✅ Preload your main CSS (so it starts downloading asap) -->
+  <link rel="preload" as="style" href="/style.css" />
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/image.png" />
+
+  <!-- SEO meta -->
+  <meta name="description" content="Lock Your Money is a digital piggy bank that helps students stop impulsive spending and save smarter." />
+  <link rel="canonical" href="https://lockyourmoney.online/" />
+
+  <!-- OpenGraph / Social meta -->
+  <meta property="og:title" content="Lock Your Money" />
+  <meta property="og:description" content="Stop overspending. Lock your money and build better habits." />
+  <meta property="og:image" content="https://lockyourmoney.online/images/preview.png" />
+  <meta property="og:url" content="https://lockyourmoney.online" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter meta -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lock Your Money" />
+  <meta name="twitter:description" content="Stop overspending. Lock your money and build better habits." />
+  <meta name="twitter:image" content="https://lockyourmoney.online/images/preview.png" />
+
+  <!-- Scripts (defer = safe for end of head) -->
+  <script src="https://getlaunchlist.com/js/widget.js" defer></script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Lock Your Money",
+    "url": "https://lockyourmoney.online",
+    "description": "A digital piggy bank to help students build smarter money habits.",
+    "applicationCategory": "FinanceApplication"
+  }
+  </script>
+</head>
+
 
   <body>
     <div id="root"></div>
