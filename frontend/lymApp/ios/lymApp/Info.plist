@@ -48,7 +48,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 
-	<!-- 👇 Added Font List -->
+	<!-- 👇 Added Icon List -->
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
