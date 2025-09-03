@@ -6,4 +6,5 @@ export const{
     PORT,
     NODE_ENV,
     SERVER_URL,
+    DB_URI
 } = process.env;
