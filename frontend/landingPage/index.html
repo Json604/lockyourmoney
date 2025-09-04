@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lock Your Money | Digital Piggy Bank for Students</title>
 
-  <!-- ✅ Preload critical hero image (fast perceived load) -->
+  <!-- ✅ Preload hero image -->
   <link
     rel="preload"
     as="image"
@@ -20,6 +20,7 @@
 
   <!-- SEO meta -->
   <meta name="description" content="Lock Your Money is a digital piggy bank that helps students stop impulsive spending and save smarter." />
+  <meta name="keywords" content="digital piggy bank, student finance, money saving app, lock money, budgeting for students, save money online" />
   <link rel="canonical" href="https://lockyourmoney.online/" />
 
   <!-- OpenGraph / Social meta -->
@@ -28,14 +29,23 @@
   <meta property="og:image" content="https://lockyourmoney.online/images/preview.png" />
   <meta property="og:url" content="https://lockyourmoney.online" />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Lock Your Money" />
 
   <!-- Twitter meta -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Lock Your Money" />
   <meta name="twitter:description" content="Stop overspending. Lock your money and build better habits." />
   <meta name="twitter:image" content="https://lockyourmoney.online/images/preview.png" />
+  <meta name="twitter:site" content="@YourHandle" />
 
-  <!-- Scripts (defer = safe for end of head) -->
+  <!-- Browser UI -->
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Preconnect (fonts/CDNs) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Scripts -->
   <script src="https://getlaunchlist.com/js/widget.js" defer></script>
 
   <!-- Structured data -->
@@ -50,8 +60,17 @@
     "applicationCategory": "FinanceApplication"
   }
   </script>
-</head>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Lock Your Money",
+    "alternateName": "LockYourMoney",
+    "url": "https://lockyourmoney.online/"
+  }
+  </script>
+</head>
 
   <body>
     <div id="root"></div>
