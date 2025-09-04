@@ -84,6 +84,7 @@ function App() {
             sizes='(max-width: 600px) 400px, (max-width: 1024px) 800px, 1024px'
             fetchpriority="high"
             alt='mockPhone' 
+            fetchPriority='high'
             />
           </motion.div>
 
