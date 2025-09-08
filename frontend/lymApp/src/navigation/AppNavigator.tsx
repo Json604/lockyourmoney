@@ -5,13 +5,15 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import ProfileNavigator from "./ProfileNavigator";
 import HomeNavigator from "./HomeNavigator";
 import Explore from "../screens/Explore/Explore";
-import { TabParamList } from "../types/navTypes";
+import { StackParamList, TabParamList } from "../types/navTypes";
+import { createStackNavigator } from "@react-navigation/stack";
+import Login from "../screens/Login/Login";
 
 const Tab = createBottomTabNavigator<TabParamList>();
+const Stack = createStackNavigator<StackParamList>();
 
-export default function AppNavigator(){
+function TabNavigator(){
     return(
-        <NavigationContainer theme={DarkTheme}>
             <Tab.Navigator
             initialRouteName="Explore"
             screenOptions={{
@@ -72,6 +74,26 @@ export default function AppNavigator(){
                 }}
                 />
             </Tab.Navigator>
+    )
+}
+
+function AppNavigator(){
+    return(
+        <NavigationContainer theme={DarkTheme}>
+            <Stack.Navigator initialRouteName="Main">
+                <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{headerShown: false}}
+                />
+                <Stack.Screen
+                name="Main"
+                component={TabNavigator}
+                options={{headerShown: false}}
+                />
+            </Stack.Navigator>
         </NavigationContainer>
     )
 }
+
+export default AppNavigator;

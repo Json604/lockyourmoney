@@ -4,6 +4,11 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 
+export type StackParamList = {
+    Login:undefined,
+    Main: TabParamList,
+}
+
 export type TabParamList = {
     Home: NavigatorScreenParams<HomeStackParamList>,
     Explore:undefined,
