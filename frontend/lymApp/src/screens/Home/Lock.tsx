@@ -13,6 +13,8 @@ export default function Lock() {
     const { background, primary, text, subtext, highAtnshn } = useContext(ThemeContext);
     const nav = useNavigation<LockScreenNavProp>();
 
+    const numberRegex = /^\d*$/;
+
     const today = new Date();
     const currentMonth = today.getMonth();
     const currentYear = today.getFullYear();
@@ -81,7 +83,10 @@ export default function Lock() {
             Alert.alert("Invalid Duration", "Lock duration must be at least 2 days from now.");
             return;
         }
-
+        if(!numberRegex.test(lockedAmount)){
+            Alert.alert("Please enter a valid number")
+            return;
+        }
         setModalVisible(!isModalVisible);
     };
 
@@ -145,8 +150,8 @@ export default function Lock() {
             />
 
             <DynCard
-                style={{ marginTop: 30, marginHorizontal: 160, backgroundColor: primary }}
-                onPress={toggleModal}
+            style={{ marginTop: 30, marginHorizontal: 160, backgroundColor: primary }}
+            onPress={toggleModal}
             >
                 <Text style={{ textAlign: "center", fontSize: 18, fontWeight: "bold" }}>
                     Lock
@@ -163,19 +168,19 @@ export default function Lock() {
                     <Text style={{ color: text, marginTop: 4, textAlign: 'center' }}>You are going to lock ₹{lockedAmount} till {storedTill}</Text>
                     <Text style={{ color: text, marginTop: 4 }}>That's {lockedDays} days from today.</Text>
                     <DynCard
-  style={{
-    elevation: 10,
-    shadowColor: highAtnshn,
-    marginVertical: 20,
-    marginTop: 40
-  }}
-  onPress={() => {
-    setModalVisible(false);
-    nav.navigate('MockPaymentScreen');
-  }}
->
-  <Text style={{ color: highAtnshn }}>Confirm lock</Text>
-    </DynCard>
+                    style={{
+                        elevation: 10,
+                        shadowColor: highAtnshn,
+                        marginVertical: 20,
+                        marginTop: 40
+                    }}
+                    onPress={() => {
+                        setModalVisible(false);
+                        nav.navigate('MockPaymentScreen');
+                    }}
+                    >
+                        <Text style={{ color: highAtnshn }}>Confirm lock</Text>
+                    </DynCard>
                 </StatCard>
             </Modal>
         </ScrollView>
