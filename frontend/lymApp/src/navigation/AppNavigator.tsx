@@ -80,7 +80,7 @@ function TabNavigator(){
 function AppNavigator(){
     return(
         <NavigationContainer theme={DarkTheme}>
-            <Stack.Navigator initialRouteName="Main">
+            <Stack.Navigator initialRouteName="Login">
                 <Stack.Screen
                 name="Login"
                 component={Login}

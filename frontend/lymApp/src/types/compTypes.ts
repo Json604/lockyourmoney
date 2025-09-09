@@ -12,3 +12,14 @@ export type StatCardProps = {
   children: ReactNode,
   style?: StyleProp<ViewStyle>;
 }& ViewProps;
+
+export type FloatingPlaceholderType = {
+  label: string;
+  value: string;
+  onChangeText: (text: string) => void;
+  placeholderTextColor?: string;
+  inputStyle?: object;
+  containerStyle?: object;
+  secureTextEntry?: boolean;
+  keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad' | 'visible-password';
+}
