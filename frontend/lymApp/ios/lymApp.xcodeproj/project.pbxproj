@@ -11,8 +11,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		4D77B6FE65264398225868D3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
-		9251FED72E70967A00C288BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9251FED62E70967A00C288BB /* GoogleService-Info.plist */; };
 		928DEC462E6FFD8200E2C443 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 928DEC452E6FFD8200E2C443 /* FirebaseAnalytics */; };
+		92C538DC2E70E4B3003FEB9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92C538DB2E70E4B3003FEB9A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-lymApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-lymApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = lymApp/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = lymApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9251FED62E70967A00C288BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		92C538DB2E70E4B3003FEB9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92EECE2D2E41003B0041B78E /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		92EECE2E2E41003B0041B78E /* FontAwesome6_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome6_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Solid.ttf"; sourceTree = "<group>"; };
 		92EECE2F2E41003B0041B78E /* FontAwesome6_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome6_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Regular.ttf"; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		13B07FAE1A68108700A75B9A /* lymApp */ = {
 			isa = PBXGroup;
 			children = (
-				9251FED62E70967A00C288BB /* GoogleService-Info.plist */,
+				92C538DB2E70E4B3003FEB9A /* GoogleService-Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -205,7 +205,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				4D77B6FE65264398225868D3 /* PrivacyInfo.xcprivacy in Resources */,
-				9251FED72E70967A00C288BB /* GoogleService-Info.plist in Resources */,
+				92C538DC2E70E4B3003FEB9A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

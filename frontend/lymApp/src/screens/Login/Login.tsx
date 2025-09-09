@@ -1,11 +1,12 @@
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import { Image, Text, StyleSheet, Alert} from 'react-native';
+import { View,Image, Text, StyleSheet, Alert} from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet, { BottomSheetTextInput, BottomSheetView } from '@gorhom/bottom-sheet';
 import { ThemeContext } from '../../context/useTheme';
 import DynCard from '../../components/cards/dynCard';
 import { useNavigation } from '@react-navigation/native';
 import FloatingPlaceholderInput from '../../components/inputCard/FloatingPlaceholderInput';
+
 
 const Login = () => {
     const {primary,text,subtext,placeholderText} = useContext(ThemeContext);
@@ -74,8 +75,26 @@ const Login = () => {
               style={[styles.card , {backgroundColor:primary}]}
               onPress={handleSheetChange}
               >
-                  <Text style={{textAlign:'center', fontWeight:'500',fontSize:20}}>Login</Text>
+                  <Text style={styles.buttonText}>Create Account</Text>
               </DynCard>
+              <View style={{position:'relative'}}>
+                <View style={{ height: 1, backgroundColor: 'grey', marginVertical: 30,marginHorizontal:20}} />
+                <View style={{position:'absolute', backgroundColor:'#2e2b2bff', alignItems:'center', left:140,right:140, top:20}}>
+                  <Text style={{color:'white'}}>Or with Google</Text>
+                </View>
+              </View>
+              <DynCard 
+                style={[styles.card , {backgroundColor:'white',}]}
+                onPress={() => {
+                  Alert.alert("I'll implement this just wait for some time")
+                }}
+                >
+                  <Image
+                  source={require('../../assets/google.png')}
+                  style={{ position:'absolute',width: 40, height: 40, left:55, top:7}}
+                  />
+                  <Text style={styles.buttonText}>Sign-in with Google</Text>
+                </DynCard>
             </BottomSheetView>
         </BottomSheet>
         ):(
@@ -114,6 +133,7 @@ const styles = StyleSheet.create({
   heading:{paddingHorizontal:15,paddingBottom:5,fontSize:30,fontWeight:'600'},
   subHeading:{paddingHorizontal:15,paddingBottom:10, fontSize:15},
   card:{padding:15,paddingVertical:13, margin:15,borderRadius:10,},
+  buttonText:{textAlign:'center', fontWeight:'500',fontSize:20},
 });
 
 export default Login;
