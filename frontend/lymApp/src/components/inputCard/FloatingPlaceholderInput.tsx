@@ -40,7 +40,7 @@ const FloatingPlaceholderInput: React.FC<FloatingPlaceholderType> = ({
             outputRange: [14, 12],
         }),
         color: 'grey',
-        backgroundColor:'#2e2b2bff',
+        backgroundColor:'#000000ff',
         paddingHorizontal: 5,
         zIndex: 1
     };

@@ -91,10 +91,11 @@ const Login = () => {
           ref={bottomSheetRef}
           onChange={handleSnapChanges}
           index={1}
-          snapPoints = {["70%"]}
-          keyboardBehavior='fillParent'
+          snapPoints = {["70%","90%"]}
+          keyboardBehavior='extend'
+          enableBlurKeyboardOnGesture={true}
           keyboardBlurBehavior="restore"
-          backgroundStyle={{backgroundColor:'#2e2b2bff', opacity:1}}
+          backgroundStyle={{backgroundColor:'#000000ff', opacity:1}}
           handleIndicatorStyle={{backgroundColor:subtext}}
           >
             <BottomSheetView style={styles.contentContainer}>
@@ -110,21 +111,25 @@ const Login = () => {
               value={email}
               onChangeText={setEmail}
               />
-              <View style={{position:'relative'}}>
+              <View style={{position:'relative',}}>
                 <FloatingPlaceholderInput
                 label="PASSWORD"
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry={eyeClose}
+                inputStyle={{zIndex:0}}
                 />
-                <TouchableOpacity onPress={handleEye}>
+                <TouchableOpacity 
+                onPress={handleEye}
+                style={{position:'absolute',bottom:20, right:30}}
+                >
                   <Image
                       source={
                         eyeClose
                         ? require('../../assets/EyeClose.png')
                         : require('../../assets/EyeOpen.png')
                       }
-                      style={{position:'absolute',width: 30, height: 30,bottom:20, right:30}}
+                      style={{width: 30, height: 30}}
                   />
                 </TouchableOpacity>  
               </View>
@@ -136,7 +141,7 @@ const Login = () => {
               </DynCard>
               <View style={{position:'relative'}}>
                 <View style={{ height: 1, backgroundColor: 'grey', marginVertical: 30,marginHorizontal:20}} />
-                <View style={{position:'absolute', backgroundColor:'#2e2b2bff', alignItems:'center', left:140,right:140, top:20}}>
+                <View style={{position:'absolute', backgroundColor:'#000000ff', alignItems:'center', left:140,right:140, top:20}}>
                   <Text style={{color:'white'}}>Or login with</Text>
                 </View>
               </View>
@@ -164,10 +169,11 @@ const Login = () => {
           ref={bottomSheetRef}
           onChange={handleSnapChanges}
           index={1}
-          snapPoints = {["45%"]}
-          keyboardBehavior='fillParent'
+          snapPoints = {["45%","75%"]}
+          keyboardBehavior='extend'
+          enableBlurKeyboardOnGesture={true}
           keyboardBlurBehavior="restore"
-          backgroundStyle={{backgroundColor:'#2e2b2bff', opacity:1}}
+          backgroundStyle={{backgroundColor:'#000000ff', opacity:1}}
           handleIndicatorStyle={{backgroundColor:subtext}}
           >
             <BottomSheetView style={styles.contentContainer}>
