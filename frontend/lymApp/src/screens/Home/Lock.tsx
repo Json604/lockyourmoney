@@ -101,6 +101,7 @@ export default function Lock() {
                     value={lockedAmount}
                     onChangeText={(text) => setLockedAmount(text)}
                     style={{ width: "100%", height: "100%", color: text }}
+                    placeholderTextColor='grey'
                 />
             </StatCard>
             <Text style={[styles.calSubtext, { color: subtext }]}>
