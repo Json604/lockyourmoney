@@ -8,13 +8,19 @@ const userSchema = new mongoose.Schema({
         minLength: 2,
         maxLength: 50
     },
-    phone:{
+    email:{
         type: String,
-        required: [true, 'Phone number is required'],
+        required: [true, 'Email adress is required'],
         unique: true,
         trim: true,
-        match: [/^\d{10}$/, 'Please enter a valid 10-digit phone number']
+        match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Please enter a valid 10-digit phone number'],
+        lowercase: true,
     },
+    password:{
+        type: String,
+        required: [true, 'Password is required'],
+        minLength:8,
+    }
 },{timestamps: true})
 
 const user = mongoose.model('user', userSchema)
