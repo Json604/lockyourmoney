@@ -39,7 +39,7 @@ const Login = () => {
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
 
-    const handleCreateAcc = useCallback(() => {
+    const handleCreateAcc = useCallback(async () => {
       const errors = [];
 
       if (!nameRegex.test(trimmedName)) {
@@ -54,8 +54,32 @@ const Login = () => {
 
       if (errors.length > 0) {
         Alert.alert("Please fix the following:", errors.join("\n"));
-      } else {
-        nav.navigate('Main');
+      }
+      else {
+        try {
+          const response = await fetch(`http://localhost:5000/api/v1/auth/sign-up`,{
+            method: "POST",
+            headers:{
+              'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+              name: trimmedName,
+              email: trimmedEmail,
+              password: trimmedPassword
+            })
+          })
+
+          const data = await response.json();
+
+          if(!response.ok){
+            throw new Error(data.error || 'Account creation failed.')
+          }
+
+          nav.navigate("Main")
+
+        } catch (error) {
+          Alert.alert("Account creation failed", error.message)
+        }
       }
     }, [name, email, password]);
 
