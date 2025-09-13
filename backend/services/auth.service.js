@@ -25,3 +25,25 @@ export const signUpService = async(name,email,password) => {
 
     return {newUser, token}
 }
+
+export const signInService = async(email,password) => {
+    // CHECK EMAIL
+    const verifyUser = await user.findOne({email})
+    if(!verifyUser){
+        const error = new Error("Email not found")
+        error.statusCode = 404
+        throw error;
+    }
+
+    // CHECK PASSWORD
+    const verifyPassword = await bcrypt.compare(password, verifyUser.password)
+    if(!verifyPassword){
+        const error = new Error("Invalid Password")
+        error.statusCode = 401;
+        throw error;
+    }
+
+    const token = jwt.sign({userID: verifyUser._id}, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+
+    return {user:verifyUser, token}
+}

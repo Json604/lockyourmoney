@@ -6,10 +6,12 @@ import { ThemeContext } from '../../context/useTheme';
 import DynCard from '../../components/cards/dynCard';
 import { useNavigation } from '@react-navigation/native';
 import FloatingPlaceholderInput from '../../components/inputCard/FloatingPlaceholderInput';
-import { ANDROID_BASE_URL , IOS_BASE_URL} from '@env';
+// import { ANDROID_BASE_URL , IOS_BASE_URL} from '@env';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 const Login = () => {
+  const IOS_BASE_URL="http://localhost:5000/api/v1"
+  const ANDROID_BASE_URL="http://10.0.2.2:5000/api/v1"
 
   const {primary,text,subtext,placeholderText} = useContext(ThemeContext);
   const [changeSheet, setChangeSheet] = useState(false);
@@ -85,7 +87,7 @@ const Login = () => {
     }
   }, [name, email, password]);
 
-  const handleLogin = useCallback(() => {
+  const handleLogin = useCallback(async() => {
     const errors = [];
     if (!emailRegex.test(trimmedEmail)) {
       errors.push("• Enter a valid Email address.");
@@ -96,8 +98,31 @@ const Login = () => {
 
     if (errors.length > 0) {
       Alert.alert("Please fix the following:", errors.join("\n"));
-    } else {
-      nav.navigate('Main');
+    } 
+    else {
+      try {
+        const response = await fetch((Platform.OS === 'android') ? `${ANDROID_BASE_URL}/auth/sign-in` : `${IOS_BASE_URL}/auth/sign-in`, {
+          method: "POST",
+          headers:{
+            'Content-Type': 'application/json',
+          },
+          body:JSON.stringify({
+            email: trimmedEmail,
+            password: trimmedPassword
+          })
+        })
+
+        const data = await response.json()
+
+        if(!response.ok){
+          throw new Error(data.error  || "Login failed")
+        }
+
+        nav.navigate("Main")
+
+      } catch (error) {
+        Alert.alert("Login failed", error.message)
+      }
     }
   }, [name, email, password]);
 
@@ -223,10 +248,11 @@ const Login = () => {
               <Text style={[styles.buttonText, {left:20}]}>Sign-in with Google</Text>
             </DynCard>
 
-            <View style={{marginVertical:15}}>
-              <Text style={{color:'white', fontSize:15, textAlign:'center'}}>Already have an account?{' '}
-                <Text style={{color:primary,textDecorationLine:'none',}} onPress={handleSheetChange}>Login here</Text>
-              </Text>
+            <View style={{marginVertical:15, display:'flex', flexDirection:'row',justifyContent:'center'}}>
+              <Text style={{color:'white', fontSize:15, }}>Already have an account?{' '}</Text>
+              <TouchableOpacity onPress={handleSheetChange}>
+                <Text style={{color:primary,fontSize:15,}}>Login here</Text>
+              </TouchableOpacity>
             </View> 
           </BottomSheetView>
       </BottomSheet>
@@ -266,7 +292,9 @@ const Login = () => {
                       style={{position:'absolute',width: 30, height: 30,bottom:20, right:30}}
                   />
                 </TouchableOpacity>
-                <Text style={{position:'absolute',color:primary,textDecorationLine:'none',right:20,bottom:-25}}>Forgot Password?</Text>
+                <TouchableOpacity>
+                  <Text style={{position:'absolute',color:primary,textDecorationLine:'none',right:20,bottom:-25}}>Forgot Password?</Text>
+                </TouchableOpacity>
               </View>
               <DynCard
               style={[styles.card , {backgroundColor:primary}]}
@@ -274,10 +302,11 @@ const Login = () => {
               >
                 <Text style={styles.buttonText}>Login</Text>
               </DynCard>
-              <View style={{marginVertical:15}}>
-                  <Text style={{color:'white', fontSize:15, textAlign:'center'}}>Don't have an account?{' '}
-                    <Text style={{color:primary,textDecorationLine:'none',}} onPress={handleSheetChange}>Register</Text>
-                  </Text>
+              <View style={{marginVertical:15, display:'flex', flexDirection:'row', justifyContent:'center'}}>
+                <Text style={{color:'white', fontSize:15}}>Don't have an account?{' '}</Text>
+                <TouchableOpacity onPress={handleSheetChange}>
+                  <Text style={{color:primary,fontSize:15}} >Register</Text>
+                </TouchableOpacity>  
               </View> 
           </BottomSheetView>
         </BottomSheet>

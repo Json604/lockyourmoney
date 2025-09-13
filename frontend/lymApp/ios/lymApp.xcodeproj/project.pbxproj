@@ -13,6 +13,7 @@
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		928DEC462E6FFD8200E2C443 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 928DEC452E6FFD8200E2C443 /* FirebaseAnalytics */; };
 		92C538DC2E70E4B3003FEB9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92C538DB2E70E4B3003FEB9A /* GoogleService-Info.plist */; };
+		C94949184BC148E69AADF536 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5C93E4E44E4A454AB1CC2BBB /* Config.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		92EECE3E2E41003B0041B78E /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		92EECE3F2E41003B0041B78E /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		5C93E4E44E4A454AB1CC2BBB /* Config.xcconfig */ = {isa = PBXFileReference; name = "Config.xcconfig"; path = "Config.xcconfig"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = text.xcconfig; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				5C93E4E44E4A454AB1CC2BBB /* Config.xcconfig */,
 				92EECE3E2E41003B0041B78E /* AntDesign.ttf */,
 				92EECE392E41003B0041B78E /* Entypo.ttf */,
 				92EECE3A2E41003B0041B78E /* EvilIcons.ttf */,
@@ -203,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C94949184BC148E69AADF536 /* Config.xcconfig in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				4D77B6FE65264398225868D3 /* PrivacyInfo.xcprivacy in Resources */,
 				92C538DC2E70E4B3003FEB9A /* GoogleService-Info.plist in Resources */,
@@ -431,6 +435,7 @@
 				USE_HERMES = true;
 			};
 			name = Debug;
+			baseConfigurationReference = 5C93E4E44E4A454AB1CC2BBB /* Config.xcconfig */;
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -503,6 +508,7 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+			baseConfigurationReference = 5C93E4E44E4A454AB1CC2BBB /* Config.xcconfig */;
 		};
 /* End XCBuildConfiguration section */
 
