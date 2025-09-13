@@ -7,8 +7,7 @@ authRouter.post('/sign-up', signUp)
 authRouter.post('/sign-in',(req,res) => {res.json({purpose: "login to account"})})
 authRouter.post('/sign-out',(req,res) => {res.json({purpose: "logout of account"})})
 
-authRouter.get('/google', (req,res) => {res.json({purpose: "google Oauth initiating route"})})
-authRouter.get('/google/callback', (req,res) => {res.json({purpose: "google Oauth callback habdling route"})})
+authRouter.post('/google', (req,res) => {res.json({purpose: "google Oauth initiating route"})})
 
 
 export default authRouter;
