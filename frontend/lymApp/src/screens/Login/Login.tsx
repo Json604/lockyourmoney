@@ -6,11 +6,10 @@ import { ThemeContext } from '../../context/useTheme';
 import DynCard from '../../components/cards/dynCard';
 import { useNavigation } from '@react-navigation/native';
 import FloatingPlaceholderInput from '../../components/inputCard/FloatingPlaceholderInput';
-import Config from 'react-native-config';
+import { ANDROID_BASE_URL , IOS_BASE_URL} from '@env';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 const Login = () => {
-  const AND_BASE_URL = Config.AND_BASE_URL;
-  const IOS_BASE_URL = Config.IOS_BASE_URL;
 
   const {primary,text,subtext,placeholderText} = useContext(ThemeContext);
   const [changeSheet, setChangeSheet] = useState(false);
@@ -60,7 +59,7 @@ const Login = () => {
     }
     else {
       try {
-        const response = await fetch((Platform.OS === 'android') ? `${AND_BASE_URL}/auth/sign-up` : `${IOS_BASE_URL}/auth/sign-up`,{
+        const response = await fetch((Platform.OS === 'android') ? `${ANDROID_BASE_URL}/auth/sign-up` : `${IOS_BASE_URL}/auth/sign-up`,{
           method: "POST",
           headers:{
             'Content-Type': 'application/json',
@@ -100,7 +99,48 @@ const Login = () => {
     } else {
       nav.navigate('Main');
     }
-}, [name, email, password]);
+  }, [name, email, password]);
+
+  // const handleGoogleLogin = async () => {
+  //   try {
+  //     // Check if device has Google Play Services
+  //     await GoogleSignin.hasPlayServices();
+      
+  //     // Attempt to sign in
+  //     const response = await GoogleSignin.signIn();
+
+  //     // If successful, userInfo object is returned directly
+  //     console.log('User Info:', response);
+  //     const {idToken,authorizationCode, user} = response.data;
+  //     const {name,email,photo} = user
+
+  //     const response = await fetch((Platform.OS === 'android') ? `${ANDROID_BASE_URL}/auth/sign-up` : `${IOS_BASE_URL}/auth/sign-up`,{
+  //       method: "POST",
+  //       headers:{
+  //         'Content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         authorizationCode,
+  //         idToken,
+  //         name,
+  //         email,
+  //         photo
+  //       })
+  //     })
+      
+  //   } catch (error) {
+  //     // If an error is thrown, handle it here
+  //     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+  //       console.log('User cancelled the sign in flow');
+  //     } else if (error.code === statusCodes.IN_PROGRESS) {
+  //       console.log('Sign in is already in progress');
+  //     } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+  //       console.log('Play Services are not available or outdated');
+  //     } else {
+  //       console.error('Something went wrong:', error);
+  //     }
+  //   }
+  // };
 
   const handleEye = () => {
     setEyeClose(prev => !prev)
@@ -173,22 +213,21 @@ const Login = () => {
               </View>
             </View>
             <DynCard 
-              style={[styles.card , {backgroundColor:'white',}]}
-              onPress={() => {
-                Alert.alert("I'll implement this just wait for some time")
-              }}
-              >
-                <Image
-                source={require('../../assets/google.png')}
-                style={{ position:'absolute',width: 40, height: 40, left:75, top:7}}
-                />
-                <Text style={[styles.buttonText, {left:20}]}>Sign-in with Google</Text>
-              </DynCard>
-              <View style={{marginVertical:15}}>
-                <Text style={{color:'white', fontSize:15, textAlign:'center'}}>Already have an account?{' '}
-                  <Text style={{color:primary,textDecorationLine:'none',}} onPress={handleSheetChange}>Login here</Text>
-                </Text>
-                </View> 
+            style={[styles.card , {backgroundColor:'white',}]}
+            // onPress={handleGoogleLogin}
+            >
+              <Image
+              source={require('../../assets/google.png')}
+              style={{ position:'absolute',width: 40, height: 40, left:75, top:7}}
+              />
+              <Text style={[styles.buttonText, {left:20}]}>Sign-in with Google</Text>
+            </DynCard>
+
+            <View style={{marginVertical:15}}>
+              <Text style={{color:'white', fontSize:15, textAlign:'center'}}>Already have an account?{' '}
+                <Text style={{color:primary,textDecorationLine:'none',}} onPress={handleSheetChange}>Login here</Text>
+              </Text>
+            </View> 
           </BottomSheetView>
       </BottomSheet>
       ):(
