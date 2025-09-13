@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Password is required'],
         minLength:8,
+    },
+    googleUid:{
+        type: String,
+        unique: true
     }
 },{timestamps: true})
 

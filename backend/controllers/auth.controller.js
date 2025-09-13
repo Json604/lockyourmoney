@@ -1,4 +1,4 @@
-import { signInService, signUpService } from "../services/auth.service.js";
+import { googleSignInService, signInService, signUpService } from "../services/auth.service.js";
 
 export const signUp = async(req,res,next) => {
     try{
@@ -35,6 +35,26 @@ export const signIn = async(req,res,next) => {
             }
         })
 
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const googleSignIn = async(req,res,next) => {
+    try {
+        const { idToken,name,email} = req.body
+
+        const {user,token} = await googleSignInService(idToken,name,email)
+
+        res.status(200).json({
+            success: true,
+            message: "User Signed-in succesfuly through Google",
+            data:{
+                user,
+                token
+            }
+        })
+        
     } catch (error) {
         next(error)
     }

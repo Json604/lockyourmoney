@@ -7,11 +7,13 @@ import DynCard from '../../components/cards/dynCard';
 import { useNavigation } from '@react-navigation/native';
 import FloatingPlaceholderInput from '../../components/inputCard/FloatingPlaceholderInput';
 // import { ANDROID_BASE_URL , IOS_BASE_URL} from '@env';
-import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import { GoogleAuthProvider, getAuth, signInWithCredential } from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 const Login = () => {
   const IOS_BASE_URL="http://localhost:5000/api/v1"
   const ANDROID_BASE_URL="http://10.0.2.2:5000/api/v1"
+  const PHONE_ANDROID_BASE_URL="http://10.51.12.103:5000/api/v1"
 
   const {primary,text,subtext,placeholderText} = useContext(ThemeContext);
   const [changeSheet, setChangeSheet] = useState(false);
@@ -126,46 +128,54 @@ const Login = () => {
     }
   }, [name, email, password]);
 
-  // const handleGoogleLogin = async () => {
-  //   try {
-  //     // Check if device has Google Play Services
-  //     await GoogleSignin.hasPlayServices();
-      
-  //     // Attempt to sign in
-  //     const response = await GoogleSignin.signIn();
+  async function handleGoogleLogin() {
+    try {
+      await GoogleSignin.signOut();
+      // 1. Check Google Play Services
+      await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
 
-  //     // If successful, userInfo object is returned directly
-  //     console.log('User Info:', response);
-  //     const {idToken,authorizationCode, user} = response.data;
-  //     const {name,email,photo} = user
-
-  //     const response = await fetch((Platform.OS === 'android') ? `${ANDROID_BASE_URL}/auth/sign-up` : `${IOS_BASE_URL}/auth/sign-up`,{
-  //       method: "POST",
-  //       headers:{
-  //         'Content-type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         authorizationCode,
-  //         idToken,
-  //         name,
-  //         email,
-  //         photo
-  //       })
-  //     })
+      // 2. Sign in and get user info
+      const signInResult = await GoogleSignin.signIn();
       
-  //   } catch (error) {
-  //     // If an error is thrown, handle it here
-  //     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-  //       console.log('User cancelled the sign in flow');
-  //     } else if (error.code === statusCodes.IN_PROGRESS) {
-  //       console.log('Sign in is already in progress');
-  //     } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-  //       console.log('Play Services are not available or outdated');
-  //     } else {
-  //       console.error('Something went wrong:', error);
-  //     }
-  //   }
-  // };
+      const idToken = signInResult.data?.idToken || signInResult.data?.idToken;
+      if (!idToken) throw new Error('No ID token found');
+
+      const user  = signInResult.data?.user // contains name, email, photo
+      if (!user) {
+        throw new Error('Google user info not found');
+      }
+      const { name, email } = user;
+
+      // 3. Send ID token and user info to your backend
+      const response = await fetch(
+        Platform.OS === 'android'
+          ? `${ANDROID_BASE_URL}/auth/google`
+          : `${IOS_BASE_URL}/auth/google`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            idToken,
+            name,
+            email,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.error || 'Google login failed');
+
+      // 4. Navigate to Main if successful
+      nav.navigate('Main');
+    } catch (error) {
+      console.error(error);
+      Alert.alert('Google Sign-In failed', error.message);
+    }
+  }
+
 
   const handleEye = () => {
     setEyeClose(prev => !prev)
@@ -239,7 +249,7 @@ const Login = () => {
             </View>
             <DynCard 
             style={[styles.card , {backgroundColor:'white',}]}
-            // onPress={handleGoogleLogin}
+            onPress={handleGoogleLogin}
             >
               <Image
               source={require('../../assets/google.png')}
@@ -282,14 +292,17 @@ const Login = () => {
                 onChangeText={setPassword}
                 secureTextEntry={eyeClose}
                 />
-                <TouchableOpacity onPress={handleEye}>
+                <TouchableOpacity 
+                style={{position:'absolute',bottom:20, right:30}}
+                onPress={handleEye}
+                >
                   <Image
                       source={
                         eyeClose
                         ? require('../../assets/EyeClose.png')
                         : require('../../assets/EyeOpen.png')
                       }
-                      style={{position:'absolute',width: 30, height: 30,bottom:20, right:30}}
+                      style={{width: 30, height: 30}}
                   />
                 </TouchableOpacity>
                 <TouchableOpacity>
