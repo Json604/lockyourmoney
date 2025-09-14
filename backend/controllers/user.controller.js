@@ -1,16 +1,11 @@
-import user from "../models/user.model.js";
+import { getUserService } from "../services/user.service.js"
 
 export const getUser = async(req,res,next) => {
     try {
-        const findUser = await user.findById(req.params.id).select('-password');
+        const user_id = req.params.id
+        const user = await getUserService(user_id)
 
-        if(!findUser){
-            const error = new Error("User not found")
-            error.statusCode = 404
-            throw error
-        }
-
-        res.status(200).json({success: true, data: findUser})
+        res.status(200).json({success: true, data: user})
     } catch (error) {
         next(error)
     }
