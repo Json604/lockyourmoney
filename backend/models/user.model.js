@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
     googleUid:{
         type: String,
         unique: true
+    },
+    lockId:{
+        type: String,
+        unique:true
     }
 },{timestamps: true})
 
