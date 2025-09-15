@@ -1,11 +1,38 @@
-import { getUserService } from "../services/user.service.js"
+import { deleteUserService, getUserService, updateUserService } from "../services/user.service.js"
 
 export const getUser = async(req,res,next) => {
     try {
         const user_id = req.params.id
+
         const user = await getUserService(user_id)
 
-        res.status(200).json({success: true, data: user})
+        res.status(200).json({success: true, message: "User Found",data: user})
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const updateUser = async(req,res,next) => {
+    try {
+        const updateFields = req.body
+        const user_id = req.params.id
+
+        const updatedUser = await updateUserService(updateFields, user_id)
+
+        res.status(200).json({success: true, message: "User Information updated succesfully", data: updatedUser})
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const deleteUser = async(req,res,next) => {
+    try {
+        const user_id = req.params.id
+
+        const deletedUser = await deleteUserService(user_id)
+
+        res.status(200).json({success: true, message: 'User delted successfully', data: deletedUser})
     } catch (error) {
         next(error)
     }

@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
     lockId:{
         type: String,
         unique:true
+    },
+    deleted:{
+        type: Boolean,
+        default: false
     }
 },{timestamps: true})
 
