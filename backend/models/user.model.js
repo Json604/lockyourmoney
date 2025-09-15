@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const userSchema = new mongoose.Schema({
     name:{
@@ -23,11 +23,13 @@ const userSchema = new mongoose.Schema({
     },
     googleUid:{
         type: String,
-        unique: true
+        unique: true,
+        sparse: true
     },
     lockId:{
-        type: String,
-        unique:true
+        type: Schema.Types.ObjectId,
+        ref: 'Lock',
+        unique: true
     },
     deleted:{
         type: Boolean,
@@ -35,6 +37,6 @@ const userSchema = new mongoose.Schema({
     }
 },{timestamps: true})
 
-const user = mongoose.model('user', userSchema)
+const User = mongoose.model('user', userSchema)
 
-export default user;
+export default User;

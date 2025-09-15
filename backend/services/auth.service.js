@@ -1,4 +1,4 @@
-import user from "../models/user.model.js";
+import User from "../models/user.model.js";
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 import { JWT_SECRET, JWT_EXPIRES_IN } from "../config/env.js";
@@ -6,7 +6,7 @@ import admin from "../firebaseAdmin.js";
 
 export const signUpService = async(name,email,password) => {
     // CHECK IF USER EXISTS
-    const existingUser = await user.findOne({email})
+    const existingUser = await User.findOne({email})
 
     if(existingUser){
         const error = new Error("User already exists")
@@ -19,7 +19,7 @@ export const signUpService = async(name,email,password) => {
     const hash = await bcrypt.hash(password, salt);
 
     // CREATE USER
-    const newUser = await user.create([{name, email, password:hash}])
+    const newUser = await User.create([{name, email, password:hash}])
 
     // GENERATE JWT TOKEN
     const token = jwt.sign({userID: newUser[0]._id}, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
@@ -29,7 +29,7 @@ export const signUpService = async(name,email,password) => {
 
 export const signInService = async(email,password) => {
     // CHECK EMAIL
-    const verifyUser = await user.findOne({email})
+    const verifyUser = await User.findOne({email})
     if(!verifyUser){
         const error = new Error("Email not found")
         error.statusCode = 404
@@ -55,10 +55,10 @@ export const googleSignInService = async(idToken,name,email) => {
 
     // decodedToken.uid is the unique Google user ID
     // Check if user exists in DB, create if not
-    let existingUser = await user.findOne({email})
+    let existingUser = await User.findOne({email})
     
     if(!existingUser){
-        existingUser = await user.create({name,email,googleUid:decodedToken.uid})
+        existingUser = await User.create({name,email,googleUid:decodedToken.uid})
     }
     if(existingUser && !existingUser.googleUid){
         existingUser.googleUid = decodedToken.uid;

@@ -18,6 +18,6 @@ const lockSchema = new mongoose.Schema({
     }
 },{timestamps: true})
 
-const lock = mongoose.model('lock', lockSchema)
+const Lock = mongoose.model('Lock', lockSchema)
 
-export default lock;
+export default Lock;

@@ -1,7 +1,8 @@
-import user from "../models/user.model.js";
+import Lock from "../models/lock.model.js";
+import User from "../models/user.model.js";
 
 export const getUserService = async(user_id) => {
-     const findUser = await user.findById(user_id).select('-password');
+     const findUser = await User.findById(user_id).select('-password');
 
         if(!findUser){
             const error = new Error("User not found")
@@ -18,7 +19,7 @@ export const updateUserService = async(updateFields, user_id) => {
         throw error
     }
 
-    const updatedUser = await user.findByIdAndUpdate(user_id, updateFields,{
+    const updatedUser = await User.findByIdAndUpdate(user_id, updateFields,{
         new:true,
         runValidators: true,
         strict: "throw"
@@ -28,9 +29,52 @@ export const updateUserService = async(updateFields, user_id) => {
 }
 
 export const deleteUserService = async(user_id) => {
-    const deletedUser = await user.findByIdAndUpdate(user_id, {deleted: true},{
+    const deletedUser = await User.findByIdAndUpdate(user_id, {deleted: true},{
         new: true,
         runValidators: true,
     })
     return deletedUser
+}
+
+export const createLockService = async(lockAmount, unlockDate, user_id) => {
+    const user = await User.findById(user_id)
+
+    if(!user){
+        const error = new Error("User not found")
+        error.statusCode = 404
+        throw error
+    }
+
+    if(user.lockId){
+        const error = new Error("Lock already exists")
+        error.statusCode = 409
+        throw error
+    }
+
+    const lock = await Lock.create({lockAmount, unlockDate})
+
+    user.lockId = lock._id
+    await user.save()
+
+    return lock
+}
+
+export const getLockService = async(user_id) => {
+    const user = await User.findById(user_id).populate('lockId')
+
+    if(!user){
+        const error = new Error("User not found")
+        error.statusCode = 404
+        throw error
+    }
+
+    if(!user.lockId){
+        const error = new Error("No Lock Info not found")
+        error.statusCode = 404
+        throw error
+    }
+
+    const lockInfo = user.lockId
+
+    return lockInfo
 }
