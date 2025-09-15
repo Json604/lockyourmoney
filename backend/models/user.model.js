@@ -21,15 +21,16 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Password is required'],
         minLength:8,
     },
-    googleUid:{
-        type: String,
-        unique: true,
-        sparse: true
-    },
+    // googleUid:{
+    //     type: String,
+    //     unique: true,
+    //     sparse: true
+    // },
     lockId:{
         type: Schema.Types.ObjectId,
         ref: 'Lock',
-        unique: true
+        unique: true,
+        sparse: true
     },
     deleted:{
         type: Boolean,
