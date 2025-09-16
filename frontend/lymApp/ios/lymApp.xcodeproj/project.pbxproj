@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		4D77B6FE65264398225868D3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
-		928DEC462E6FFD8200E2C443 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 928DEC452E6FFD8200E2C443 /* FirebaseAnalytics */; };
 		92C538DC2E70E4B3003FEB9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92C538DB2E70E4B3003FEB9A /* GoogleService-Info.plist */; };
 		C1AF5B7840D188F76E7E45E4 /* Pods_lymApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7CB7F4F28D155DE98BE667 /* Pods_lymApp.framework */; };
 		C94949184BC148E69AADF536 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5C93E4E44E4A454AB1CC2BBB /* Config.xcconfig */; };
@@ -24,9 +23,10 @@
 		2D7CB7F4F28D155DE98BE667 /* Pods_lymApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lymApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-lymApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lymApp.debug.xcconfig"; path = "Target Support Files/Pods-lymApp/Pods-lymApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-lymApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lymApp.release.xcconfig"; path = "Target Support Files/Pods-lymApp/Pods-lymApp.release.xcconfig"; sourceTree = "<group>"; };
-		5C93E4E44E4A454AB1CC2BBB /* Config.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		5C93E4E44E4A454AB1CC2BBB /* Config.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = lymApp/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = lymApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		922617B82E7868E300B26880 /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:EQHXZ8M8AV:Google LLC"; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalytics.xcframework; path = Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
 		92C538DB2E70E4B3003FEB9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92EECE2D2E41003B0041B78E /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		92EECE2E2E41003B0041B78E /* FontAwesome6_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome6_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome6_Solid.ttf"; sourceTree = "<group>"; };
@@ -55,7 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				928DEC462E6FFD8200E2C443 /* FirebaseAnalytics in Frameworks */,
 				C1AF5B7840D188F76E7E45E4 /* Pods_lymApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,6 +78,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				922617B82E7868E300B26880 /* FirebaseAnalytics.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				2D7CB7F4F28D155DE98BE667 /* Pods_lymApp.framework */,
 			);
@@ -190,9 +190,6 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
-			packageReferences = (
-				928DEC442E6FFD8200E2C443 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-			);
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -568,25 +565,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		928DEC442E6FFD8200E2C443 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 12.2.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		928DEC452E6FFD8200E2C443 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 928DEC442E6FFD8200E2C443 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }
