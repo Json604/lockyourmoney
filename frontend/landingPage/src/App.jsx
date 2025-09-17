@@ -13,6 +13,7 @@ const Hls = lazy(() => import('hls.js'));
 function App() {
   const videoRef = useRef(null);
   const [activeSection, setActiveSection] = useState('joinWaitlist');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Memoize expensive calculations
   const isMobile = useMemo(() => window.innerWidth < 768, []);
@@ -89,11 +90,30 @@ function App() {
   // Memoize navigation handlers
   const handleNavClick = useCallback((sectionId) => {
     setActiveSection(sectionId);
+    setIsMobileMenuOpen(false); // Close mobile menu when navigating
     document.getElementById(sectionId)?.scrollIntoView({ 
       behavior: 'smooth',
       block: 'start'
     });
   }, []);
+
+  const toggleMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(prev => !prev);
+  }, []);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMobileMenuOpen && !event.target.closest('header')) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <>
@@ -110,7 +130,53 @@ function App() {
           <h1>LYM</h1>
         </div>
 
-        <nav data-active={activeSection}>
+        {/* Desktop Navigation */}
+        <nav className="desktop-nav" data-active={activeSection}>
+          <a 
+            href='#joinWaitlist' 
+            className={activeSection === 'joinWaitlist' ? 'active' : ''}
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('joinWaitlist');
+            }}
+          >
+            Join Waitlist
+          </a>
+          <a 
+            href="#demo" 
+            className={activeSection === 'demo' ? 'active' : ''}
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('demo');
+            }}
+          >
+            How it Works
+          </a>
+          <a 
+            href='#about' 
+            className={activeSection === 'about' ? 'active' : ''}
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('about');
+            }}
+          >
+            About
+          </a>
+        </nav>
+
+        {/* Mobile Hamburger Menu */}
+        <button 
+          className="hamburger-menu"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle mobile menu"
+        >
+          <span className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`}></span>
+          <span className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`}></span>
+          <span className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`}></span>
+        </button>
+
+        {/* Mobile Navigation Menu */}
+        <nav className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
           <a 
             href='#joinWaitlist' 
             className={activeSection === 'joinWaitlist' ? 'active' : ''}
@@ -148,7 +214,7 @@ function App() {
         colorStops={["#707070", "#FCFF66", "#707070"]}
         blend={0.4}
         amplitude={isMobile ? 0.5 : 1.0}
-        speed={isMobile ? 0.5 : 1.0}
+        speed={isMobile ? 0.01 : 1.0}
       />
 
       <section id='joinWaitlist'>
