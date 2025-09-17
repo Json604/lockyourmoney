@@ -940,15 +940,17 @@ button {
   .hero {
     flex-direction: column;
     align-items: center;
-    padding-top: 2rem;
+    padding-top: 15vh;
     padding-left: 1rem;
     padding-right: 1rem;
     text-align: center;
     justify-content: flex-start;
-    min-height: 100vh;
+    height: 100vh;
   }
   .phone-container {
-    position: static;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
     width: 100%;
     margin-bottom: 1.5rem;
     padding: 0 1rem;
@@ -961,7 +963,11 @@ button {
     height: auto;
   }
   .textR {
-    position: static;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    margin-left: auto !important;
+    margin-top: 0 !important;
     width: 95%;
     max-width: 450px;
     margin: 0 auto;
@@ -1016,7 +1022,7 @@ button {
   .video-section {
     /* To make the video as large as possible without overflowing,
        we remove all padding from its container on phones. */
-    padding: 0; /* Removed all padding */
+    padding: 4rem 0; /* Add more vertical padding */
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -1036,12 +1042,29 @@ button {
 
   /* --- SCROLL INDICATOR FIX FOR PHONES --- */
   .scroll-indicator-wrapper {
-    bottom: 1rem; 
+    bottom: 15%;
+    z-index: 5;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .scroll-indicator {
+    width: 20px;
+    height: 32px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+  }
+
+  .scroll-indicator::before {
+    top: 6px;
+    width: 3px;
+    height: 8px;
   }
 
   /* --- ABOUT SECTION RESPONSIVE --- */
   .about-container {
-    padding: 2rem 1rem;
+    padding: 5rem 1rem;
   }
 
   .about-header h2 {
@@ -1120,7 +1143,14 @@ button {
 /* Medium phones and small tablets */
 @media (max-width: 640px) and (min-width: 481px) {
   .hero {
-    padding-top: 1.8rem;
+    padding-top: 12vh;
+    height: 100vh;
+  }
+
+  .phone-container {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
   }
 
   .phone-container img {
@@ -1186,12 +1216,16 @@ button {
   }
 
   .hero {
-    padding-top: 1.5rem;
+    padding-top: 10vh;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+    height: 100vh;
   }
 
   .phone-container {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
     margin-bottom: 1rem;
     padding: 0 0.5rem;
   }
@@ -1202,6 +1236,11 @@ button {
   }
 
   .textR {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    margin-left: auto !important;
+    margin-top: 0 !important;
     width: 100%;
     padding: 0 0.5rem;
   }
@@ -1249,7 +1288,7 @@ button {
   }
 
   .about-container {
-    padding: 1.5rem 0.75rem;
+    padding: 4rem 0.75rem;
   }
 
   .about-header h2 {
@@ -1293,5 +1332,27 @@ button {
 
   .footer-bottom-content p {
     font-size: 0.8rem;
+  }
+
+  /* --- SCROLL INDICATOR FIX FOR SMALL PHONES --- */
+  .scroll-indicator-wrapper {
+    bottom: 15%;
+    z-index: 5;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .scroll-indicator {
+    width: 18px;
+    height: 28px;
+    border: 1.5px solid #fff;
+    border-radius: 9px;
+  }
+
+  .scroll-indicator::before {
+    top: 5px;
+    width: 2px;
+    height: 6px;
   }
 }

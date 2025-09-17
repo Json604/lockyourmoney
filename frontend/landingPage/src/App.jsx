@@ -117,9 +117,6 @@ function App() {
 
   return (
     <>
-      <Suspense fallback={<div style={{ height: '100vh', background: '#000' }} />}>
-        <Aurora />
-      </Suspense>
       <header>
         <div 
           className='logoContainer'
@@ -214,7 +211,7 @@ function App() {
         colorStops={["#707070", "#FCFF66", "#707070"]}
         blend={0.4}
         amplitude={isMobile ? 0.5 : 1.0}
-        speed={isMobile ? 0.01 : 1.0}
+        speed={isMobile ? 0.3 : 1.0}
       />
 
       <section id='joinWaitlist'>
