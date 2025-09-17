@@ -17,6 +17,7 @@
 
   <!-- Favicon -->
   <link rel="icon" href="/images/image.png" />
+  <link rel="manifest" href="/manifest.json" />
 
   <!-- SEO meta -->
   <meta name="description" content="Lock Your Money is a digital piggy bank app designed for students. It helps prevent impulsive spending, build smarter money habits, and track savings to reach financial goals easily." />
@@ -44,9 +45,53 @@
   <!-- Preconnect (fonts/CDNs) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://getlaunchlist.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  
+  <!-- Resource hints for better performance -->
+  <link rel="prefetch" href="/videos/index.m3u8" />
+  <link rel="prefetch" href="/src/assets/phoneMockupTablet.webp" />
+  <link rel="prefetch" href="/src/assets/phoneMockupMobile.webp" />
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="/videos/demo2.mp4" as="video" type="video/mp4" />
+  <link rel="preload" href="/src/assets/phoneMockup.webp" as="image" type="image/webp" />
+  <link rel="preload" href="/src/style/Aurora.css" as="style" />
+  
+  <!-- Critical CSS inline -->
+  <style>
+    /* Critical above-the-fold styles */
+    html, body { height: 100%; margin: 0; overflow-x: hidden; background-color: #000; font-family: 'Inter', sans-serif; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    *, *::before, *::after { box-sizing: border-box; }
+    .aurora-container { width: 100%; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1; }
+    header { position: absolute; top: 1rem; left: 1.5rem; right: 1.5rem; display: flex; align-items: center; justify-content: space-between; background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 5rem; z-index: 10; }
+    .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; overflow: hidden; }
+  </style>
+  
+  <!-- Optimize font loading -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anta&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+  </noscript>
 
   <!-- Scripts -->
   <script src="https://getlaunchlist.com/js/widget.js" defer></script>
+  
+  <!-- Performance monitoring -->
+  <script>
+    // Monitor Core Web Vitals
+    if ('web-vital' in window) {
+      import('https://unpkg.com/web-vitals@3/dist/web-vitals.attribution.js').then(({ onCLS, onFID, onFCP, onLCP, onTTFB }) => {
+        onCLS(console.log);
+        onFID(console.log);
+        onFCP(console.log);
+        onLCP(console.log);
+        onTTFB(console.log);
+      });
+    }
+  </script>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -56,8 +101,24 @@
     "name": "Lock Your Money",
     "alternateName": "LockYourMoney",
     "url": "https://lockyourmoney.online",
-    "description": "A digital piggy bank to help students build smarter money habits.",
-    "applicationCategory": "FinanceApplication"
+    "description": "A digital piggy bank to help students build smarter money habits and control impulsive spending.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web, iOS, Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Lock funds for specified periods",
+      "Prevent impulsive spending",
+      "Build better money habits",
+      "Automatic fund unlocking"
+    ],
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Students and young professionals"
+    }
   }
   </script>
 
@@ -75,5 +136,20 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
