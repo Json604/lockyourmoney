@@ -4,14 +4,15 @@ import { ThemeContext } from "../../context/useTheme";
 import { Calendar } from "react-native-calendars";
 import DynCard from "../../components/cards/dynCard";
 import StatCard from "../../components/cards/StatCard";
-import { useNavigation } from "@react-navigation/native";
-import { LockScreenNavProp } from "../../types/navTypes";
 import Modal from 'react-native-modal'
 import { useLockContext } from "../../context/lockContext";
+import RazorpayCheckout from 'react-native-razorpay';
 
 export default function Lock() {
     const { background, primary, text, subtext, highAtnshn } = useContext(ThemeContext);
-    const nav = useNavigation<LockScreenNavProp>();
+    const IOS_BASE_URL="http://localhost:5000/api/v1"
+    const ANDROID_BASE_URL="http://10.0.2.2:5000/api/v1"
+    const RAZORPAY_KEY_ID= "rzp_test_RIwpWTSldkxIDe"
 
     const numberRegex = /^\d*$/;
 
@@ -175,10 +176,43 @@ export default function Lock() {
                         marginVertical: 20,
                         marginTop: 40
                     }}
-                    onPress={() => {
+                    onPress={async () => {
                         setModalVisible(false);
-                        nav.navigate('MockPaymentScreen');
-                    }}
+
+                        const res = await fetch(`${ANDROID_BASE_URL}/payment/order`, {
+                            method: 'POST',
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                amount: lockedAmount,
+                                currency: 'INR'
+                            })
+                        })
+
+                        const order = await res.json()
+
+                        var options = {
+                            description: 'Credits towards consultation',
+                            image: '',
+                            currency: 'INR',
+                            key: RAZORPAY_KEY_ID,
+                            amount: order.amount,
+                            name: 'LYM - Lock Your Money',
+                            order_id: order.id,
+                            prefill: {
+                            email: 'kartikey.com',
+                            contact: '+918264106438',
+                            name: 'Kartikey'
+                            },
+                            theme: {color: primary}
+                        }
+                        RazorpayCheckout.open(options).then((data) => {
+                            // handle success
+                            Alert.alert(`Success: ${data.razorpay_payment_id}`);
+                        }).catch((error) => {
+                            // handle failure
+                            Alert.alert(`Error: ${error.code} | ${error.description}`);
+                        })
+                        }}
                     >
                         <Text style={{ color: highAtnshn }}>Confirm lock</Text>
                     </DynCard>

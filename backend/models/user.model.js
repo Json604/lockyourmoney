@@ -21,11 +21,11 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Password is required'],
         minLength:8,
     },
-    // googleUid:{
-    //     type: String,
-    //     unique: true,
-    //     sparse: true
-    // },
+    googleUid:{
+        type: String,
+        unique: true,
+        sparse: true
+    },
     lockId:{
         type: Schema.Types.ObjectId,
         ref: 'Lock',
@@ -38,6 +38,6 @@ const userSchema = new mongoose.Schema({
     }
 },{timestamps: true})
 
-const User = mongoose.model('user', userSchema)
+const User = mongoose.model('User', userSchema)
 
 export default User;

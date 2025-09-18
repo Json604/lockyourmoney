@@ -10,5 +10,7 @@ export const{
     JWT_SECRET,
     JWT_EXPIRES_IN,
     ARCJET_KEY,
-    ARCJET_ENV
+    ARCJET_ENV,
+    RAZORPAY_KEY_SECRET,
+    RAZORPAY_KEY_ID
 } = process.env;

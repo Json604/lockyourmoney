@@ -11,11 +11,11 @@ const app = express();
 
 app.use(express.json())
 
-app.use(arcjetMiddleware)
+// app.use(arcjetMiddleware)
 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', userRouter)
-app.use('/app/v1/payment', paymentRouter)
+app.use('/api/v1/payment', paymentRouter)
 
 app.use(errorMiddleware)
 
