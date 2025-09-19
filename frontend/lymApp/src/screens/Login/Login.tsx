@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { View,Image, Text, StyleSheet, Alert, TouchableOpacity, Platform} from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet, { BottomSheetTextInput, BottomSheetView } from '@gorhom/bottom-sheet';
@@ -6,14 +6,18 @@ import { ThemeContext } from '../../context/useTheme';
 import DynCard from '../../components/cards/dynCard';
 import { useNavigation } from '@react-navigation/native';
 import FloatingPlaceholderInput from '../../components/inputCard/FloatingPlaceholderInput';
-// import { ANDROID_BASE_URL , IOS_BASE_URL} from '@env';
 import { GoogleAuthProvider, getAuth, signInWithCredential } from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { ANDROID_BASE_URL, IOS_BASE_URL } from "../../../config";
+
 
 const Login = () => {
-  const IOS_BASE_URL="http://localhost:5000/api/v1"
-  const ANDROID_BASE_URL="http://10.0.2.2:5000/api/v1"
-  const PHONE_ANDROID_BASE_URL="http://10.51.12.103:5000/api/v1"
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: '900359259255-3i3gbql56s2m5s3k4kf6tqihfoj51sd5.apps.googleusercontent.com',
+      offlineAccess:true,
+    });
+  },[])
 
   const {primary,text,subtext,placeholderText} = useContext(ThemeContext);
   const [changeSheet, setChangeSheet] = useState(false);
@@ -137,14 +141,20 @@ const Login = () => {
       // 2. Sign in and get user info
       const signInResult = await GoogleSignin.signIn();
       
-      const idToken = signInResult.data?.idToken || signInResult.data?.idToken;
+      const idToken = signInResult.data?.idToken
       if (!idToken) throw new Error('No ID token found');
 
       const user  = signInResult.data?.user // contains name, email, photo
       if (!user) {
         throw new Error('Google user info not found');
       }
+
+      const googleCredential = GoogleAuthProvider.credential(idToken);
+      const userCredential = await signInWithCredential(getAuth(), googleCredential);
+      const firebaseToken = await userCredential.user.getIdToken();
+
       const { name, email } = user;
+
 
       // 3. Send ID token and user info to your backend
       const response = await fetch(
@@ -157,7 +167,7 @@ const Login = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            idToken,
+            firebaseToken,
             name,
             email,
           }),

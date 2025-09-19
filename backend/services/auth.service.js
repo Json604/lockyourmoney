@@ -49,12 +49,11 @@ export const signInService = async(email,password) => {
     return {user:verifyUser, token}
 }
 
-export const googleSignInService = async(idToken,name,email) => {
-    // Verify the ID token with Firebase Admin
-    const decodedToken = await admin.auth().verifyIdToken(idToken)
+export const googleSignInService = async(firebaseToken) => {
+    const decodedToken = await admin.auth().verifyIdToken(firebaseToken)
+    const email = decodedToken.email
+    const name = decodedToken.name
 
-    // decodedToken.uid is the unique Google user ID
-    // Check if user exists in DB, create if not
     let existingUser = await User.findOne({email})
     
     if(!existingUser){

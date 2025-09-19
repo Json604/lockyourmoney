@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { TextInput, Text, ScrollView, StyleSheet, Alert } from "react-native";
+import { TextInput, Text, ScrollView, StyleSheet, Alert, Platform } from "react-native";
 import { ThemeContext } from "../../context/useTheme";
 import { Calendar } from "react-native-calendars";
 import DynCard from "../../components/cards/dynCard";
@@ -7,12 +7,10 @@ import StatCard from "../../components/cards/StatCard";
 import Modal from 'react-native-modal'
 import { useLockContext } from "../../context/lockContext";
 import RazorpayCheckout from 'react-native-razorpay';
+import { ANDROID_BASE_URL, IOS_BASE_URL, RAZORPAY_KEY_ID } from "../../../config";
 
 export default function Lock() {
     const { background, primary, text, subtext, highAtnshn } = useContext(ThemeContext);
-    const IOS_BASE_URL="http://localhost:5000/api/v1"
-    const ANDROID_BASE_URL="http://10.0.2.2:5000/api/v1"
-    const RAZORPAY_KEY_ID= "rzp_test_RIwpWTSldkxIDe"
 
     const numberRegex = /^\d*$/;
 
@@ -179,9 +177,12 @@ export default function Lock() {
                     onPress={async () => {
                         setModalVisible(false);
 
-                        const res = await fetch(`${ANDROID_BASE_URL}/payment/order`, {
+                        const res = await fetch((Platform.OS === 'android') ? `${ANDROID_BASE_URL}/payment/order` : `${IOS_BASE_URL}/payment/order`, {
                             method: 'POST',
-                            headers: { "Content-Type": "application/json" },
+                            headers: { 
+                                "Content-Type": "application/json",
+                                "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2OGNiYTZhOTM0MmZmODk0YmY0NGUxNTIiLCJpYXQiOjE3NTgxOTg4NjIsImV4cCI6MTc2NTk3NDg2Mn0.hYAD7f_Qyw4Uz3rmgY7eTdeL-WOd-z3R7_o5THZL_cs`
+                            },
                             body: JSON.stringify({
                                 amount: lockedAmount,
                                 currency: 'INR'
@@ -191,16 +192,16 @@ export default function Lock() {
                         const order = await res.json()
 
                         var options = {
-                            description: 'Credits towards consultation',
+                            description: 'Lock Your Amount',
                             image: '',
                             currency: 'INR',
                             key: RAZORPAY_KEY_ID,
-                            amount: order.amount,
+                            amount: order.data.amount,
                             name: 'LYM - Lock Your Money',
-                            order_id: order.id,
+                            order_id: order.data.id,
                             prefill: {
                             email: 'kartikey.com',
-                            contact: '+918264106438',
+                            contact: '+918264196438',
                             name: 'Kartikey'
                             },
                             theme: {color: primary}

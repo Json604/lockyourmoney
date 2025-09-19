@@ -42,9 +42,9 @@ export const signIn = async(req,res,next) => {
 
 export const googleSignIn = async(req,res,next) => {
     try {
-        const { idToken,name,email} = req.body
+        const {firebaseToken} = req.body
 
-        const {user,token} = await googleSignInService(idToken,name,email)
+        const {user,token} = await googleSignInService(firebaseToken)
 
         res.status(200).json({
             success: true,
