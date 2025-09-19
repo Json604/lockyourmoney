@@ -181,15 +181,20 @@ export default function Lock() {
                             method: 'POST',
                             headers: { 
                                 "Content-Type": "application/json",
-                                "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2OGNiYTZhOTM0MmZmODk0YmY0NGUxNTIiLCJpYXQiOjE3NTgxOTg4NjIsImV4cCI6MTc2NTk3NDg2Mn0.hYAD7f_Qyw4Uz3rmgY7eTdeL-WOd-z3R7_o5THZL_cs`
+                                "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2OGNkMjUzOWM0ZjQ3NTkzNjU2MzUyMTMiLCJpYXQiOjE3NTgyNzQ4NzMsImV4cCI6MTc2NjA1MDg3M30.LkKieu3Okoesf03U-ipHOxmauSaGljWe-RGYSOZediw`
                             },
                             body: JSON.stringify({
                                 amount: lockedAmount,
-                                currency: 'INR'
+                                currency: 'INR',
+                                unlockDate: '2025-10-18T06:28:57.094Z'
                             })
                         })
 
                         const order = await res.json()
+
+                        if(!order.success) Alert.alert(order.error)
+
+                        console.log(order);
 
                         var options = {
                             description: 'Lock Your Amount',
@@ -206,9 +211,26 @@ export default function Lock() {
                             },
                             theme: {color: primary}
                         }
-                        RazorpayCheckout.open(options).then((data) => {
+                        RazorpayCheckout.open(options)
+                        .then(async (data) => {
                             // handle success
-                            Alert.alert(`Success: ${data.razorpay_payment_id}`);
+                            const verifyRes = await fetch((Platform.OS === 'android') ? `${ANDROID_BASE_URL}/payment/verify` : `${IOS_BASE_URL}/payment/verify`,{
+                                method:"POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    razorpay_order_id: data.razorpay_order_id,
+                                    razorpay_payment_id: data.razorpay_payment_id,
+                                    razorpay_signature: data.razorpay_signature
+                                })
+                            })
+
+                            const result = await verifyRes.json();
+
+                            if(result.success) Alert.alert(`Payment Verified Successfully`);
+                            else Alert.alert(`Payment Verification Failed`);
+
                         }).catch((error) => {
                             // handle failure
                             Alert.alert(`Error: ${error.code} | ${error.description}`);
