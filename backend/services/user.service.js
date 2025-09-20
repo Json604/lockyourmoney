@@ -1,4 +1,3 @@
-import Lock from "../models/lock.model.js";
 import User from "../models/user.model.js";
 
 export const getUserService = async(user_id) => {
@@ -36,28 +35,6 @@ export const deleteUserService = async(user_id) => {
     return deletedUser
 }
 
-export const createLockService = async(lockAmount, unlockDate, user_id) => {
-    const user = await User.findById(user_id)
-
-    if(!user){
-        const error = new Error("User not found")
-        error.statusCode = 404
-        throw error
-    }
-
-    if(user.lockId){
-        const error = new Error("Lock already exists")
-        error.statusCode = 409
-        throw error
-    }
-
-    const lock = await Lock.create({lockAmount, unlockDate})
-
-    user.lockId = lock._id
-    await user.save()
-
-    return lock
-}
 
 export const getLockService = async(user_id) => {
     const user = await User.findById(user_id).populate('lockId')

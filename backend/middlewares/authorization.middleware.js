@@ -13,10 +13,10 @@ export const authorize = async(req,res,next) => {
 
         const decoded = jwt.verify(token, JWT_SECRET)
 
-        const findUser = await User.findById(decoded.userID)
-        if(!findUser) return res.status(401).json({message: "Unauthorised"});
+        const user = await User.findById(decoded.userID)
+        if(!user) return res.status(401).json({message: "Unauthorised"});
 
-        req.user = findUser
+        req.user = user
         next()
     } catch (error) {
         res.status(401).json({message: "Unauthorised", error: error.message})

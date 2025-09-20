@@ -1,4 +1,4 @@
-import { createLockService, deleteUserService, getLockService, getUserService, updateUserService } from "../services/user.service.js"
+import { deleteUserService, getLockService, getUserService, updateUserService } from "../services/user.service.js"
 
 export const getUser = async(req,res,next) => {
     try {
@@ -36,20 +36,6 @@ export const deleteUser = async(req,res,next) => {
     } catch (error) {
         next(error)
     }
-}
-
-export const createLock = async(req,res,next) => {
-    try {
-        const user_id = req.params.id
-        const {lockAmount, unlockDate} = req.body
-
-        const lockInfo = await createLockService(lockAmount, unlockDate, user_id)
-        
-        res.status(201).json({success: true, message: 'Lock created successfully', data: lockInfo})
-    } catch (error) {
-        next(error)
-    }
-
 }
 
 export const getLock = async(req,res,next) => {

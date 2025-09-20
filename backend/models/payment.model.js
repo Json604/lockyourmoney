@@ -5,7 +5,7 @@ const paymentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    staus:{
+    status:{
         type:String,
         enum: ["Pending","Success","Failed"],
         default: 'Pending',
@@ -22,6 +22,14 @@ const paymentSchema = new mongoose.Schema({
         unique: true,
         sparse: true
     },
+    razorpay_order_id:{
+        type: String,
+        unique: true
+    },
+    razorpay_payment_id:{
+        type: String,
+        unique: true
+    }
 }, {timestamps: true})
 
 const Payment = mongoose.model('Payment', paymentSchema)

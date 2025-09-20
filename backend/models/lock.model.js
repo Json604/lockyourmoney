@@ -15,6 +15,11 @@ const lockSchema = new mongoose.Schema({
             },
             message: `Unlock date must be in future.`
         },
+    },
+    status:{
+        type: String,
+        enum: ["Pending", "Success", "Failed"],
+        default: "Pending"
     }
 },{timestamps: true})
 
